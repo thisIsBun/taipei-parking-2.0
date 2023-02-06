@@ -1,5 +1,5 @@
 import Navbar from "../Navbar/Navbar";
-import Map from "../../pages/Map"
+import HomePage from "../../pages/HomePage/HomePage";
 import AboutMe from "../../pages/AboutMe";
 import styled from "styled-components";
 import { HashRouter, Routes, Route} from "react-router-dom"
@@ -19,7 +19,7 @@ function App() {
         <HashRouter>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Map />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/aboutme" element={<AboutMe />} />
           </Routes>
         </HashRouter>

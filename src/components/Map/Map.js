@@ -1,26 +1,7 @@
 import API_KEY from "./.apiKey";
 import React from "react";
 import GoogleMapReact from "google-map-react";
-import styled from "styled-components";
 import PropTypes from "prop-types"
-
-const ParkingContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-gap: 20px;
-  border: 1px solid red;
-`;
-
-const Info = styled.div`
-  grid-column: 1/2;
-  border: 1px solid red;
-`;
-
-const MapWrapper = styled.div`
-  padding: 2px;
-  grid-column: 2/3;
-  border: 1px solid #e7e6e6;
-`;
 
 function AnyReactComponent({text}) {
   return <div>{text}</div>;
@@ -40,9 +21,6 @@ export default function Map() {
   };
 
   return (
-    <ParkingContainer>
-      <Info />
-      <MapWrapper>
         <div style={{ height: "85vh", width: "100%" }}>
           <GoogleMapReact
             bootstrapURLKeys={{ key: API_KEY }}
@@ -56,7 +34,5 @@ export default function Map() {
             />
           </GoogleMapReact>
         </div>
-      </MapWrapper>
-    </ParkingContainer>
   );
 }
