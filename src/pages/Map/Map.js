@@ -2,6 +2,7 @@ import API_KEY from "./.apiKey";
 import React from "react";
 import GoogleMapReact from "google-map-react";
 import styled from "styled-components";
+import PropTypes from "prop-types"
 
 const ParkingContainer = styled.div`
   display: grid;
@@ -23,6 +24,10 @@ const MapWrapper = styled.div`
 
 function AnyReactComponent({text}) {
   return <div>{text}</div>;
+}
+
+AnyReactComponent.propTypes = {
+  text: PropTypes.string
 }
 
 export default function Map() {

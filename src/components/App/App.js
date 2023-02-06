@@ -7,9 +7,9 @@ import { HashRouter, Routes, Route} from "react-router-dom"
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
+  padding-top: 13vh;
 `
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Map />} />
-            <Route path="/" element={<AboutMe />} />
+            <Route path="/aboutme" element={<AboutMe />} />
           </Routes>
         </HashRouter>
       </Container>
