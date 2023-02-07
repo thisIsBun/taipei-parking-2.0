@@ -5,25 +5,26 @@ import styled from "styled-components";
 import { HashRouter, Routes, Route} from "react-router-dom"
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding-top: 13vh;
-`
+  width: 97%;
+  margin: 0 auto;
+  padding-top: 14vh;
+  @media screen and (min-width: 768px) {
+    width: 85%;
+  }
+`;
 
 function App() {
   return (
     <div className="App">
-      <Container>
-        <HashRouter>
-          <Navbar />
+      <HashRouter>
+        <Navbar />
+        <Container>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/aboutme" element={<AboutMe />} />
           </Routes>
-        </HashRouter>
-      </Container>
+        </Container>
+      </HashRouter>
     </div>
   );
 }

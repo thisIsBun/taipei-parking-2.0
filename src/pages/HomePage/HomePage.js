@@ -5,6 +5,7 @@ import styled from "styled-components";
 const ParkingContainer = styled.div`
   border: 1px solid red;
   display: flex;
+  flex-direction: column-reverse;
   @media screen and (min-width: 768px) {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -12,32 +13,29 @@ const ParkingContainer = styled.div`
   }
 `;
 
-const Info = styled.div`
-  border: 1px solid red;
+const InfoContainer = styled.div`
+  border: 1px solid green;
   width: 100%;
   @media screen and (min-width: 768px) {
     grid-column: 1/2;
   }
 `;
 
-const MapWrapper = styled.div`
-  ${Map} {
-    display: none;
-  }
+const MapContainer = styled.div`
+  border: 1px solid blue;
   @media screen and (min-width: 768px) {
     padding: 2px;
     grid-column: 2/3;
-    border: 1px solid #e7e6e6;
   }
 `;
 
 export default function HomePage() {
   return (
     <ParkingContainer>
-      <Info>Info</Info>
-      <MapWrapper>
+      <InfoContainer>Info</InfoContainer>
+      <MapContainer>
         <Map/>
-      </MapWrapper>
+      </MapContainer>
     </ParkingContainer>
   );
 }

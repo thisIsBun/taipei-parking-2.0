@@ -1,32 +1,65 @@
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import navlogo from "../../assets/logo.png";
+import { useState } from "react";
 
 const NavWrapper = styled.header`
+  width: 100%;
+  height: 11vh;
+  background: #ffffff;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   position: fixed;
-  top: 0;
-  left: 5%;
-  right: 5%;
-  height: 13vh;
+  z-index: 10;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
+
   @media screen and (min-width: 768px) {
-    justify-content: space-between;
-    padding: 0 12px;
+    display: grid;
+    grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
   }
 `;
 
 const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
+  @media screen and (min-width: 768px) {
+    grid-column: 2/3;
+  }
 `;
 
 const Name = styled.h1`
   margin-left: 10px;
   font-size: 24px;
   font-weight: normal;
+`;
+
+const Nav = styled(Link)`
+  font-size: 20px;
+  font-weight: normal;
+  color: #34495e;
+  text-decoration: none;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  &:hover {
+    background: rgba(255, 126, 121, 0.3);
+  }
+  @media screen and (min-width: 768px) {
+    padding: 5px;
+    border: 4px solid rgba(0, 0, 0, 0);
+    margin-right: 10px;
+    border-bottom-color: ${(props) => (props.$pathActive ? "#FF7E79" : "")};
+    opacity: 1;
+    &:hover {
+      background: #ffffff;
+      font-weight: bold;
+    }
+  }
 `;
 
 const NavbarList = styled.div`
@@ -41,40 +74,28 @@ const NavbarList = styled.div`
   transform: scale(1, 0);
   @media screen and (min-width: 768px) {
     all: unset;
+    grid-column: 3/4;
     display: flex;
+    justify-content: end;
   }
-`;
+  ${(props) =>
+    props.$checkboxStatus &&
+    `
+    transform: scale(1, 1);
+  `}
 
-const Nav = styled(Link)`
-  font-size: 20px;
-  font-weight: normal;
-  color: #34495e;
-  text-decoration: none;
-  opacity: 0;
-  display: flex;
-  justify-content: center;
-  padding: 30px;
-  &:hover {
-    font-weight: bold;
-  }
-  @media screen and (min-width: 768px) {
-    padding: 5px;
-    border: 4px solid rgba(0, 0, 0, 0);
-    margin-right: 10px;
-    border-bottom-color: ${(props) => (props.$active ? "#FF7E79" : "")};
-    opacity: 1;
+  ${Nav} {
+    ${(props) =>
+      props.$checkboxStatus &&
+      `
+      transition: opacity 0.2s ease-out 0.25s;
+      opacity: 1;
+    `}
   }
 `;
 
 const Input = styled.input`
   display: none;
-  &:checked ~ ${NavbarList} {
-    transform: scale(1, 1);
-  }
-  &:checked ~ ${NavbarList} ${Nav} {
-    transition: opacity 0.2s ease-out 0.25s;
-    opacity: 1;
-  }
 `;
 
 const Label = styled.label`
@@ -113,7 +134,16 @@ const Span = styled.span`
 `;
 
 export default function Navbar() {
-  let location = useLocation()
+  let location = useLocation();
+  const [mobileCheckbox, setMobileCheckbox] = useState(false);
+
+  const handleMobileCheckbox = (e) => {
+    setMobileCheckbox(e.target.checked);
+  };
+
+  const handleMobileNav = () => {
+    setMobileCheckbox(!mobileCheckbox);
+  };
 
   return (
     <NavWrapper>
@@ -121,12 +151,18 @@ export default function Navbar() {
         <img src={navlogo} alt="website-logo" width="30px" height="30px"></img>
         <Name>車位即時查</Name>
       </LogoWrapper>
-      <Input type="checkbox" className="navbar-toggle" id="navbar-toggle" />
-      <NavbarList>
-        <Nav to="/" $active={location.pathname === "/"}>
+      <Input
+        type="checkbox"
+        className="navbar-toggle"
+        id="navbar-toggle"
+        checked={mobileCheckbox}
+        onChange={handleMobileCheckbox}
+      />
+      <NavbarList $checkboxStatus={mobileCheckbox} onClick={handleMobileNav}>
+        <Nav to="/" $pathActive={location.pathname === "/"}>
           台北車位現況
         </Nav>
-        <Nav to="/AboutMe" $active={location.pathname === "/AboutMe"}>
+        <Nav to="/AboutMe" $pathActive={location.pathname === "/AboutMe"}>
           關於我
         </Nav>
       </NavbarList>
