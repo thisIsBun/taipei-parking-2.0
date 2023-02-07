@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import navlogo from "../../assets/logo.png";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
+import Switch from "../Switch";
+import { ThemeContext } from "../ThemeProvider/ThemeProvider";
 
 const NavWrapper = styled.header`
   width: 100%;
@@ -53,7 +55,7 @@ const Nav = styled(Link)`
     padding: 5px;
     border: 4px solid rgba(0, 0, 0, 0);
     margin-right: 10px;
-    border-bottom-color: ${(props) => (props.$pathActive ? "#FF7E79" : "")};
+    border-bottom-color: ${(props) => (props.$pathActive ? props.$color : "")};
     opacity: 1;
     &:hover {
       background: #ffffff;
@@ -134,6 +136,8 @@ const Span = styled.span`
 `;
 
 export default function Navbar() {
+  const { theme } = useContext(ThemeContext);
+
   let location = useLocation();
   const [mobileCheckbox, setMobileCheckbox] = useState(false);
 
@@ -159,12 +163,21 @@ export default function Navbar() {
         onChange={handleMobileCheckbox}
       />
       <NavbarList $checkboxStatus={mobileCheckbox} onClick={handleMobileNav}>
-        <Nav to="/" $pathActive={location.pathname === "/"}>
+        <Nav
+          to="/"
+          $pathActive={location.pathname === "/"}
+          $color={theme.color}
+        >
           台北車位現況
         </Nav>
-        <Nav to="/AboutMe" $pathActive={location.pathname === "/AboutMe"}>
+        <Nav
+          to="/AboutMe"
+          $pathActive={location.pathname === "/AboutMe"}
+          $color={theme.color}
+        >
           關於我
         </Nav>
+        <Switch/>
       </NavbarList>
       <Label htmlFor="navbar-toggle" className="navbar-toggle-label">
         <Span />
