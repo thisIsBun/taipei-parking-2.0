@@ -1,24 +1,21 @@
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import navlogo from "../../assets/logo.png";
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import Switch from "../Switch";
 import { ThemeContext } from "../ThemeProvider/ThemeProvider";
 
 const NavWrapper = styled.header`
   width: 100%;
-  height: 11vh;
-  background: #ffffff;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  height: 10vh;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
   position: fixed;
   z-index: 10;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   @media screen and (min-width: 768px) {
     display: grid;
     grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
@@ -42,25 +39,28 @@ const Name = styled.h1`
 const Nav = styled(Link)`
   font-size: 20px;
   font-weight: normal;
-  color: #34495e;
+  color: ${(props) => props.$color.font_main};
   text-decoration: none;
   opacity: 0;
   display: flex;
   justify-content: center;
   padding: 30px;
+  border-radius: 8px;
   &:hover {
-    background: rgba(255, 126, 121, 0.3);
+    background: ${(props) => props.$color.background_hover};
+  }
+  &, &:focus {
+    ${(props) =>
+      props.$pathActive &&
+      `
+      background: ${props.$color.background_active};
+      color: ${props.$color.font_active};
+    `}
   }
   @media screen and (min-width: 768px) {
-    padding: 5px;
-    border: 4px solid rgba(0, 0, 0, 0);
+    padding: 10px 15px;
     margin-right: 10px;
-    border-bottom-color: ${(props) => (props.$pathActive ? props.$color : "")};
     opacity: 1;
-    &:hover {
-      background: #ffffff;
-      font-weight: bold;
-    }
   }
 `;
 
@@ -68,7 +68,7 @@ const NavbarList = styled.div`
   position: absolute;
   top: 100%;
   width: 100%;
-  background: #ffffff;
+  background: ${(props) => props.$color.background_main};
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease-out;
@@ -116,13 +116,13 @@ const Label = styled.label`
 const Span = styled.span`
   width: 30px;
   height: 3px;
-  background: #34495e;
+  background: ${(props) => props.$color.font_main};
   position: relative;
   &::before,
   &::after {
     width: 30px;
     height: 3px;
-    background: #34495e;
+    background: ${(props) => props.$color.font_main};
     content: "";
     position: absolute;
     left: 0;
@@ -137,7 +137,6 @@ const Span = styled.span`
 
 export default function Navbar() {
   const { theme } = useContext(ThemeContext);
-
   let location = useLocation();
   const [mobileCheckbox, setMobileCheckbox] = useState(false);
 
@@ -150,7 +149,7 @@ export default function Navbar() {
   };
 
   return (
-    <NavWrapper>
+    <NavWrapper $color={theme}>
       <LogoWrapper>
         <img src={navlogo} alt="website-logo" width="30px" height="30px"></img>
         <Name>車位即時查</Name>
@@ -162,25 +161,25 @@ export default function Navbar() {
         checked={mobileCheckbox}
         onChange={handleMobileCheckbox}
       />
-      <NavbarList $checkboxStatus={mobileCheckbox} onClick={handleMobileNav}>
-        <Nav
-          to="/"
-          $pathActive={location.pathname === "/"}
-          $color={theme.color}
-        >
+      <NavbarList
+        $checkboxStatus={mobileCheckbox}
+        onClick={handleMobileNav}
+        $color={theme}
+      >
+        <Nav to="/" $pathActive={location.pathname === "/"} $color={theme}>
           台北車位現況
         </Nav>
         <Nav
           to="/AboutMe"
           $pathActive={location.pathname === "/AboutMe"}
-          $color={theme.color}
+          $color={theme}
         >
           關於我
         </Nav>
-        <Switch/>
+        <Switch />
       </NavbarList>
       <Label htmlFor="navbar-toggle" className="navbar-toggle-label">
-        <Span />
+        <Span $color={theme} />
       </Label>
     </NavWrapper>
   );

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { ThemeContext } from "../ThemeProvider/ThemeProvider";
 
 

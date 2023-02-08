@@ -1,5 +1,4 @@
 import Map from "../../components/Map"
-import React from "react";
 import styled from "styled-components";
 
 const ParkingContainer = styled.div`
