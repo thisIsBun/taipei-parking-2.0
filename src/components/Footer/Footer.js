@@ -12,8 +12,7 @@ const FooterContainer = styled.footer`
   z-index: 10;
   bottom: 0;
   @media screen and (min-width: 768px) {
-    // border: 2px solid blue;
-    font-size: 14px;
+    font-size: 13px;
   }
 `;
 
@@ -93,7 +92,7 @@ export default function Footer() {
       <Hr $color={theme} />
       <Wrapper>
         <FooterTitle>
-          &copy; Website are C 2023 and designed and built by Bun Chen.
+          Website are designed and built by Bun &copy; 2023.
         </FooterTitle>
         <LinkWrapper>
           <LinkItem

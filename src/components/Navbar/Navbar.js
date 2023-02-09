@@ -151,11 +151,12 @@ export default function Navbar() {
   let location = useLocation();
   const [mobileCheckbox, setMobileCheckbox] = useState(false);
 
-  const handleMobileCheckbox = (e) => {
+  const handleInputCheckbox = (e) => {
     setMobileCheckbox(e.target.checked);
   };
 
   const handleMobileNav = () => {
+    if (window.screen.width >= 768) return;
     setMobileCheckbox(!mobileCheckbox);
   };
 
@@ -174,7 +175,7 @@ export default function Navbar() {
         className="navbar-toggle"
         id="navbar-toggle"
         checked={mobileCheckbox}
-        onChange={handleMobileCheckbox}
+        onChange={handleInputCheckbox}
       />
       <NavbarList
         $checkboxStatus={mobileCheckbox}
