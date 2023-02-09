@@ -23,7 +23,7 @@ const themes = {
     background_active: "#04AA6D",
     font_active: "#ffffff",
     background_hover: "#cccccc",
-    border_main: "#E7E9EB",
+    border_main: "#D6D6D6",
   },
   dark: {
     background_main: "#1d2a35",
