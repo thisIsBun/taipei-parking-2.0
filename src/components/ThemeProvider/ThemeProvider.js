@@ -29,6 +29,7 @@ const ThemeProvider = ({ children }) => {
   const toggleTheme = () => setDark(!dark);
   const theme = dark ? themes.dark : themes.light;
   const defaultValue = {
+    dark,
     theme,
     toggleTheme,
   };

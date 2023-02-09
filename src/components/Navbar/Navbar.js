@@ -7,7 +7,7 @@ import { ThemeContext } from "../ThemeProvider/ThemeProvider";
 
 const NavWrapper = styled.header`
   width: 100%;
-  height: 10vh;
+  min-height: 10vh;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
   -moz-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
@@ -18,7 +18,18 @@ const NavWrapper = styled.header`
   justify-content: center;
   @media screen and (min-width: 768px) {
     display: grid;
-    grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+    grid-template-columns: 1fr auto minmax(400px, 3fr) 1fr;
+  }
+`;
+
+const SwitchWrapper = styled.div`
+  width: 100px;
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  @media screen and (min-width: 768px) {
+    all: unset;
   }
 `;
 
@@ -31,7 +42,7 @@ const LogoWrapper = styled.div`
 `;
 
 const Name = styled.h1`
-  margin-left: 10px;
+  margin: 0 10px;
   font-size: 24px;
   font-weight: normal;
 `;
@@ -96,9 +107,7 @@ const NavbarList = styled.div`
   }
 `;
 
-const Input = styled.input`
-  display: none;
-`;
+const Input = styled.input``;
 
 const Label = styled.label`
   cursor: pointer;
@@ -151,10 +160,14 @@ export default function Navbar() {
   return (
     <NavWrapper $color={theme}>
       <LogoWrapper>
-        <img src={navlogo} alt="website-logo" width="30px" height="30px"></img>
+        <img src={navlogo} alt="website-logo" width="30px" height="30px" />
         <Name>車位即時查</Name>
+        <SwitchWrapper>
+          <Switch />
+        </SwitchWrapper>
       </LogoWrapper>
       <Input
+        hidden
         type="checkbox"
         className="navbar-toggle"
         id="navbar-toggle"
@@ -176,7 +189,6 @@ export default function Navbar() {
         >
           關於我
         </Nav>
-        <Switch />
       </NavbarList>
       <Label htmlFor="navbar-toggle" className="navbar-toggle-label">
         <Span $color={theme} />
