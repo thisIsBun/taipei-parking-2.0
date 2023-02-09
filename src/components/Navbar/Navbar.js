@@ -26,7 +26,7 @@ const SwitchWrapper = styled.div`
   width: 100px;
   position: absolute;
   top: 50%;
-  left: 5%;
+  left: 1.5%;
   transform: translateY(-50%);
   @media screen and (min-width: 768px) {
     all: unset;
@@ -56,11 +56,12 @@ const Nav = styled(Link)`
   display: flex;
   justify-content: center;
   padding: 30px;
-  border-radius: 8px;
   &:hover {
-    background: ${(props) => props.$color.background_hover};
+    background: ${(props) =>
+      props.$pathActive ? "" : props.$color.background_hover};
   }
-  &, &:focus {
+  &,
+  &:focus {
     ${(props) =>
       props.$pathActive &&
       `
@@ -72,6 +73,7 @@ const Nav = styled(Link)`
     padding: 10px 15px;
     margin-right: 10px;
     opacity: 1;
+    border-radius: 8px;
   }
 `;
 
@@ -114,7 +116,7 @@ const Label = styled.label`
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 5%;
+  right: 1.5%;
   display: flex;
   align-items: center;
   @media screen and (min-width: 768px) {

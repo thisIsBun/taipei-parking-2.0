@@ -3,21 +3,26 @@ import { useContext } from "react";
 import { ThemeContext } from "../ThemeProvider/ThemeProvider";
 
 const Label = styled.label`
-  width: 90px;
-  min-height: 5vh;
+  width: 70px;
+  min-height: 3.5vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 10px;
   cursor: pointer;
+  @media screen and (min-width: 768px) {
+    width: 90px;
+    min-height: 5vh;
+    font-size: 13px;
+    font-weight: bold;
+  }
 `;
 
 const SwitchBG = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid ${(props) => props.$color.font_main};
+  border: 2px solid ${(props) => props.$color.border_main};
   position: absolute;
   border-radius: 50px;
 `;
