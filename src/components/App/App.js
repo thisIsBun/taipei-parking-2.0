@@ -1,14 +1,15 @@
 import Navbar from "../Navbar/Navbar";
 import HomePage from "../../pages/HomePage/HomePage";
 import AboutMe from "../../pages/AboutMe";
-import Footer from "../Footer"
+import Footer from "../Footer";
 import styled from "styled-components";
-import { HashRouter, Routes, Route} from "react-router-dom"
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { useContext } from "react";
-import { ThemeContext } from "../ThemeProvider/ThemeProvider";
+import { ThemeContext } from "../../constants/style";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import { MEDIA_QUERY } from "../../constants/style";
 
 library.add(fab, fas);
 
@@ -16,7 +17,7 @@ const Container = styled.div`
   width: 97%;
   margin: 0 auto;
   padding: 12vh 0 3vh;
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     width: 85%;
   }
 `;
@@ -26,8 +27,8 @@ function App() {
 
   const style = {
     background: theme.background_main,
-    color: theme.font_main
-  }
+    color: theme.font_main,
+  };
 
   return (
     <div className="App" style={style}>
@@ -39,7 +40,7 @@ function App() {
             <Route path="/aboutme" element={<AboutMe />} />
           </Routes>
         </Container>
-        <Footer/>
+        <Footer />
       </HashRouter>
     </div>
   );

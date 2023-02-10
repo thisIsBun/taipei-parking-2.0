@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import navlogo from "../../assets/logo.png";
 import { useState, useContext } from "react";
 import Switch from "../Switch";
-import { ThemeContext } from "../ThemeProvider/ThemeProvider";
+import { ThemeContext } from "../../constants/style";
+import { MEDIA_QUERY } from "../../constants/style";
 
 const NavWrapper = styled.header`
   width: 100%;
@@ -16,7 +17,7 @@ const NavWrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     display: grid;
     grid-template-columns: 1fr auto minmax(400px, 3fr) 1fr;
   }
@@ -28,7 +29,7 @@ const SwitchWrapper = styled.div`
   top: 50%;
   left: 1.5%;
   transform: translateY(-50%);
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     all: unset;
   }
 `;
@@ -36,7 +37,7 @@ const SwitchWrapper = styled.div`
 const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     grid-column: 2/3;
   }
 `;
@@ -69,7 +70,7 @@ const Nav = styled(Link)`
       color: ${props.$color.font_active};
     `}
   }
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     padding: 10px 15px;
     margin-right: 10px;
     opacity: 1;
@@ -87,7 +88,7 @@ const NavbarList = styled.div`
   transition: transform 0.3s ease-out;
   transform-origin: top;
   transform: scale(1, 0);
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     all: unset;
     grid-column: 3/4;
     display: flex;
@@ -119,7 +120,7 @@ const Label = styled.label`
   right: 1.5%;
   display: flex;
   align-items: center;
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     display: none;
   }
 `;

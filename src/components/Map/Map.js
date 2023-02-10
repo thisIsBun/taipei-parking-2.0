@@ -2,11 +2,12 @@ import API_KEY from "./.apiKey";
 import GoogleMapReact from "google-map-react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { MEDIA_QUERY } from "../../constants/style";
 
 const MapWrapper = styled.div`
   width: 100%;
   height: 60vh;
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     height: 80vh;
   }
 `;

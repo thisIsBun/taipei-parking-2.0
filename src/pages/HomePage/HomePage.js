@@ -1,11 +1,12 @@
 import Map from "../../components/Map"
 import styled from "styled-components";
+import { MEDIA_QUERY } from "../../constants/style";
 
 const ParkingContainer = styled.div`
-  border: 1px solid red;
+  // border: 1px solid red;
   display: flex;
   flex-direction: column-reverse;
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-gap: 20px;
@@ -13,16 +14,16 @@ const ParkingContainer = styled.div`
 `;
 
 const InfoContainer = styled.div`
-  border: 1px solid green;
+  // border: 1px solid green;
   width: 100%;
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     grid-column: 1/2;
   }
 `;
 
 const MapContainer = styled.div`
-  border: 1px solid blue;
-  @media screen and (min-width: 768px) {
+  // border: 1px solid blue;
+  ${MEDIA_QUERY} {
     padding: 2px;
     grid-column: 2/3;
   }

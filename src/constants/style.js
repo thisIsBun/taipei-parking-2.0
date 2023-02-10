@@ -1,22 +1,7 @@
 import { useState, createContext } from "react";
+import PropTypes from "prop-types";
 
 const themes = {
-  // light: {
-  //   background_main: "#ffffff",
-  //   font_main: "#404756",
-  //   background_active: "#e4f4fc",
-  //   font_active: "#087ea4",
-  //   background_hover: "#f6f7f9",
-  //   border_main: "#EBECF0",
-  // },
-  // dark: {
-  //   background_main: "#23272f",
-  //   font_main: "#ebecf0",
-  //   background_active: "#58afdf1a",
-  //   font_active: "#149eca",
-  //   background_hover: "#343a46",
-  //   border_main: "#483A46",
-  // },
   light: {
     background_main: "#fff",
     font_main: "#000",
@@ -40,7 +25,7 @@ export const ThemeContext = createContext({
   toggleTheme: () => {},
 });
 
-const ThemeProvider = ({ children }) => {
+export const ThemeProvider = ({ children }) => {
   const [dark, setDark] = useState(false);
   const toggleTheme = () => setDark(!dark);
   const theme = dark ? themes.dark : themes.light;
@@ -57,4 +42,8 @@ const ThemeProvider = ({ children }) => {
   );
 };
 
-export default ThemeProvider;
+ThemeProvider.propTypes = {
+  children: PropTypes.node,
+};
+
+export const MEDIA_QUERY = "@media screen and (min-width: 768px)";

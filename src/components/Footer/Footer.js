@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import styled from 'styled-components';
+import React, { useContext } from "react";
+import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom"
-import { ThemeContext } from '../ThemeProvider/ThemeProvider';
-
+import { Link } from "react-router-dom";
+import { ThemeContext } from "../../constants/style";
+import { MEDIA_QUERY } from "../../constants/style";
 
 const FooterContainer = styled.footer`
   width: 100%;
@@ -11,14 +11,14 @@ const FooterContainer = styled.footer`
   position: fixed;
   z-index: 10;
   bottom: 0;
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     font-size: 13px;
   }
 `;
 
 const Hr = styled.hr`
   display: none;
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     display: block;
     width: 90%;
     margin: 0 auto;
@@ -33,7 +33,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 2px 3vw;
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     width: 90%;
     margin: 5px auto;
     // position: relative;
@@ -41,12 +41,10 @@ const Wrapper = styled.div`
   }
 `;
 
-const FooterTitle = styled.p`
-  
-`
+const FooterTitle = styled.p``;
 
 const LinkWrapper = styled.div`
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     // position: absolute;
     // top: 0;
     // right: 0;
@@ -60,7 +58,7 @@ const LinkItem = styled(Link)`
   & + & {
     margin-left: 8px;
   }
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     display: flex;
     align-items: center;
     // border: 1px solid green;
@@ -77,7 +75,7 @@ const LinkItem = styled(Link)`
 
 const LinkTitle = styled.p`
   display: none;
-  @media screen and (min-width: 768px) {
+  ${MEDIA_QUERY} {
     display: block;
     margin-left: 8px;
     padding-right: 5px;
@@ -86,7 +84,7 @@ const LinkTitle = styled.p`
 `;
 
 export default function Footer() {
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
   return (
     <FooterContainer>
       <Hr $color={theme} />

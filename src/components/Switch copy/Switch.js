@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useContext } from "react";
-import { ThemeContext } from "../../constants/style";
-import { MEDIA_QUERY } from "../../constants/style";
+import { ThemeContext } from "../../constants/ThemeProvider";
 
 const Label = styled.label`
   width: 70px;
