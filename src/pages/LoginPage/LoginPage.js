@@ -3,6 +3,16 @@ import { login } from "../../apis/WebAPI";
 import { setAuthToken } from "../../constants/utils";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom"
+import LoginForm from "../../components/LoginForm";
+import styled from "styled-components";
+import { MEDIA_QUERY } from "../../constants/style";
+
+const Container = styled.div`
+  ${MEDIA_QUERY} {
+    width: 478px;
+    margin: 0 auto;
+  }
+`;
 
 export default function LoginPage() {
   const [account, setAccount] = useState("");
@@ -25,8 +35,9 @@ export default function LoginPage() {
   };
 
   return (
-    <>
-      <form onSubmit={handleLogin}>
+    <Container>
+      <LoginForm account={account} />
+      {/* <form onSubmit={handleLogin}>
         <div>
           Account:{" "}
           <input
@@ -48,7 +59,7 @@ export default function LoginPage() {
         </div>
         <button>登入</button>
       </form>
-      {errorMessage && <p>{errorMessage}</p>}
-    </>
+      {errorMessage && <p>{errorMessage}</p>} */}
+    </Container>
   );
 }

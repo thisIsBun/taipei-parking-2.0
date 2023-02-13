@@ -5,7 +5,7 @@ import LoginPage from "../../pages/LoginPage";
 import Footer from "../Footer";
 import styled from "styled-components";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import { useContext, useState, useEffect, useLayoutEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -28,10 +28,10 @@ const Container = styled.div`
 
 function App() {
   const { theme } = useContext(ThemeContext);
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState();
 
-  useLayoutEffect(() => {
-    if (getAuthToken) {
+  useEffect(() => {
+    if (getAuthToken()) {
       getUser().then((data) => {
         if (data.status !== "error") {
           setUser(data);
@@ -47,7 +47,7 @@ function App() {
 
   return (
     <div className="App" style={style}>
-      <AuthContext.Provider value={{user, setUser}}>
+      <AuthContext.Provider value={{ user, setUser }}>
         <HashRouter>
           <Navbar />
           <Container>
