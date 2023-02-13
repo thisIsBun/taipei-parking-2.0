@@ -3,8 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import navlogo from "../../assets/logo.png";
 import { useState, useContext } from "react";
 import Switch from "../Switch";
-import { ThemeContext } from "../../constants/style";
 import { MEDIA_QUERY } from "../../constants/style";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import { AuthContext } from "../../contexts/AuthContext";
+import { setAuthToken } from "../../constants/utils";
 
 const NavWrapper = styled.header`
   width: 100%;
@@ -49,7 +51,7 @@ const Name = styled.h1`
 `;
 
 const Nav = styled(Link)`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: normal;
   color: ${(props) => props.$color.font_main};
   text-decoration: none;
@@ -149,6 +151,7 @@ const Span = styled.span`
 
 export default function Navbar() {
   const { theme } = useContext(ThemeContext);
+  const { user, setUser } = useContext(AuthContext)
   let location = useLocation();
   const [mobileCheckbox, setMobileCheckbox] = useState(false);
 
@@ -160,6 +163,11 @@ export default function Navbar() {
     if (window.screen.width >= 768) return;
     setMobileCheckbox(!mobileCheckbox);
   };
+
+  const handleLogout = () => {
+    setUser(null)
+    setAuthToken(null)
+  }
 
   return (
     <NavWrapper $color={theme}>
@@ -184,15 +192,31 @@ export default function Navbar() {
         $color={theme}
       >
         <Nav to="/" $pathActive={location.pathname === "/"} $color={theme}>
-          台北車位現況
+          台北車位地圖
         </Nav>
-        <Nav
-          to="/AboutMe"
-          $pathActive={location.pathname === "/AboutMe"}
-          $color={theme}
-        >
-          關於我
-        </Nav>
+        {user && (
+          <Nav
+            to="/save"
+            $pathActive={location.pathname === "/save"}
+            $color={theme}
+          >
+            儲存
+          </Nav>
+        )}
+        {!user && (
+          <Nav
+            to="/login"
+            $pathActive={location.pathname === "/login"}
+            $color={theme}
+          >
+            登入
+          </Nav>
+        )}
+        {user && (
+          <Nav to="/" $color={theme} onClick={handleLogout}>
+            登出
+          </Nav>
+        )}
       </NavbarList>
       <Label htmlFor="navbar-toggle" className="navbar-toggle-label">
         <Span $color={theme} />

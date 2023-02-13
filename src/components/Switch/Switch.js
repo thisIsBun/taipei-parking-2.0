@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useContext } from "react";
-import { ThemeContext } from "../../constants/style";
+import { ThemeContext } from "../../contexts/ThemeContext";
 import { MEDIA_QUERY } from "../../constants/style";
 
 const Label = styled.label`
@@ -15,7 +15,7 @@ const Label = styled.label`
   ${MEDIA_QUERY} {
     width: 90px;
     min-height: 5vh;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
   }
 `;

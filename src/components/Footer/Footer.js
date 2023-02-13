@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { ThemeContext } from "../../constants/style";
+import { ThemeContext } from "../../contexts/ThemeContext";
 import { MEDIA_QUERY } from "../../constants/style";
 
 const FooterContainer = styled.footer`
