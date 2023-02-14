@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 import { login } from "../../apis/WebAPI";
 import { setAuthToken } from "../../constants/utils";
 import { AuthContext } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom"
-import LoginForm from "../../components/LoginForm";
+import { useNavigate } from "react-router-dom";
+import Form from "../../components/Form";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../constants/style";
 
@@ -14,52 +14,59 @@ const Container = styled.div`
   }
 `;
 
-export default function LoginPage() {
+export default function LoginPage({ children }) {
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const { setUser } = useContext(AuthContext);
-  const navigator = useNavigate()
+  const navigator = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    login(account, password).then((data) => {
-      if (data.status === "error") {
-        return setErrorMessage(data.message);
-      } else if (data.status === "success") {
-        setAuthToken(data.data.token);
-        setUser(data.data.user);
-        navigator("/")
-      }
-    });
+    setIsLoading(true);
+    login(account, password)
+      .then((data) => {
+        if (data.status === "error") {
+          setIsLoading(false);
+          return setErrorMessage(data.message);
+        } else if (data.status === "success") {
+          setIsLoading(false);
+          setAuthToken(data.data.token);
+          setUser(data.data.user);
+          navigator("/");
+        }
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        return setErrorMessage(err.message);
+      });
+  };
+
+  const handleAccountInput = (value) => {
+    setAccount(value);
+  };
+
+  const handlePasswordInput = (value) => {
+    setPassword(value);
+  };
+
+  const handleErrorMessage = ({ children }) => {
+    setErrorMessage("");
   };
 
   return (
     <Container>
-      <LoginForm account={account} />
-      {/* <form onSubmit={handleLogin}>
-        <div>
-          Account:{" "}
-          <input
-            value={account}
-            onChange={(e) => {
-              setAccount(e.target.value);
-            }}
-          />
-        </div>
-        <div>
-          Password:{" "}
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-        </div>
-        <button>登入</button>
-      </form>
-      {errorMessage && <p>{errorMessage}</p>} */}
+      <Form
+        account={account}
+        password={password}
+        handleInputChange={{ handleAccountInput, handlePasswordInput }}
+        handleLogin={handleLogin}
+        errorMessage={errorMessage}
+        isLoading={isLoading}
+      >
+        {children && handleErrorMessage}
+      </Form>
     </Container>
   );
 }

@@ -9,7 +9,7 @@ body {
   height: 100%;
 }
 body {
-  font-family: "Noto Sans TC", sans-serif; /* 設定字型 */
+  font-family: "Noto Sans TC", sans-serif;
   font-size: 1rem;
   line-height: 1.4;
   margin: 0;
@@ -24,4 +24,32 @@ h5 {
 }
 p {
   margin: 0;
+}
+
+.loaders {
+  border: 6px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 6px solid rgba(0, 0, 0, 0);
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

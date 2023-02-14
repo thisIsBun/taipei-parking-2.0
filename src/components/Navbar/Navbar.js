@@ -166,7 +166,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     setUser(null)
-    setAuthToken(null)
+    setAuthToken("")
   }
 
   return (
