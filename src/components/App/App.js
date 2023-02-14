@@ -28,13 +28,13 @@ const Container = styled.div`
 
 function App() {
   const { theme } = useContext(ThemeContext);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(-1);
 
   useEffect(() => {
     if (getAuthToken()) {
       getUser().then((data) => {
         if (data.status !== "error") {
-          setUser(data);
+          setUser(data.id);
         }
       });
     }

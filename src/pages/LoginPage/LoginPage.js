@@ -33,7 +33,7 @@ export default function LoginPage() {
         } else if (data.status === "success") {
           setIsLoading(false);
           setAuthToken(data.data.token);
-          setUser(data.data.user);
+          setUser(data.data.user.id);
           navigator("/");
         }
       })
@@ -43,26 +43,18 @@ export default function LoginPage() {
       });
   };
 
-  const handleAccountInput = (value) => {
-    setAccount(value);
-  };
-
-  const handlePasswordInput = (value) => {
-    setPassword(value);
-  };
-
   return (
     <Container>
       <Form
         account={account}
         password={password}
-        handleInputChange={{ handleAccountInput, handlePasswordInput }}
+        setAccount={setAccount}
+        setPassword={setPassword}
         handleLogin={handleLogin}
         errorMessage={errorMessage}
         setErrorMessage={setErrorMessage}
         isLoading={isLoading}
-      >
-      </Form>
+      ></Form>
     </Container>
   );
 }

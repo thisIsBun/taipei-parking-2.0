@@ -77,14 +77,14 @@ const ErrorMessage = styled.div`
 export default function Form({
   account,
   password,
-  handleInputChange,
   handleLogin,
   errorMessage,
   isLoading,
   setErrorMessage,
+  setAccount,
+  setPassword,
 }) {
   const { theme } = useContext(ThemeContext);
-  const { handleAccountInput, handlePasswordInput } = handleInputChange;
 
   return (
     <FormContainer
@@ -100,7 +100,7 @@ export default function Form({
           $color={theme}
           value={account}
           onChange={(e) => {
-            handleAccountInput(e.target.value);
+            setAccount(e.target.value);
           }}
           onFocus={() => {
             setErrorMessage("");
@@ -114,7 +114,7 @@ export default function Form({
           $color={theme}
           value={password}
           onChange={(e) => {
-            handlePasswordInput(e.target.value);
+            setPassword(e.target.value);
           }}
           onFocus={() => {
             setErrorMessage("");
@@ -137,9 +137,10 @@ export default function Form({
 Form.propTypes = {
   account: PropTypes.string,
   password: PropTypes.string,
-  handleInputChange: PropTypes.object,
   handleLogin: PropTypes.func,
   errorMessage: PropTypes.string,
   isLoading: PropTypes.bool,
-  setErrorMessage: PropTypes.func
+  setErrorMessage: PropTypes.func,
+  setAccount: PropTypes.func,
+  setPassword: PropTypes.func,
 };

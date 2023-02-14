@@ -165,7 +165,7 @@ export default function Navbar() {
   };
 
   const handleLogout = () => {
-    setUser(null)
+    setUser(0)
     setAuthToken("")
   }
 
@@ -194,7 +194,7 @@ export default function Navbar() {
         <Nav to="/" $pathActive={location.pathname === "/"} $color={theme}>
           台北車位地圖
         </Nav>
-        {user && (
+        {user > 0 && (
           <Nav
             to="/save"
             $pathActive={location.pathname === "/save"}
@@ -203,7 +203,7 @@ export default function Navbar() {
             儲存
           </Nav>
         )}
-        {!user && (
+        {user <= 0 && (
           <Nav
             to="/login"
             $pathActive={location.pathname === "/login"}
@@ -212,7 +212,7 @@ export default function Navbar() {
             登入
           </Nav>
         )}
-        {user && (
+        {user > 0 && (
           <Nav to="/" $color={theme} onClick={handleLogout}>
             登出
           </Nav>
