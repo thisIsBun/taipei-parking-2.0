@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../constants/style";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import PropTypes from "prop-types";
 
@@ -81,6 +81,7 @@ export default function Form({
   handleLogin,
   errorMessage,
   isLoading,
+  setErrorMessage,
 }) {
   const { theme } = useContext(ThemeContext);
   const { handleAccountInput, handlePasswordInput } = handleInputChange;
@@ -101,6 +102,9 @@ export default function Form({
           onChange={(e) => {
             handleAccountInput(e.target.value);
           }}
+          onFocus={() => {
+            setErrorMessage("");
+          }}
         />
       </FormWrapper>
       <FormWrapper>
@@ -111,6 +115,9 @@ export default function Form({
           value={password}
           onChange={(e) => {
             handlePasswordInput(e.target.value);
+          }}
+          onFocus={() => {
+            setErrorMessage("");
           }}
         />
       </FormWrapper>
@@ -134,4 +141,5 @@ Form.propTypes = {
   handleLogin: PropTypes.func,
   errorMessage: PropTypes.string,
   isLoading: PropTypes.bool,
+  setErrorMessage: PropTypes.func
 };

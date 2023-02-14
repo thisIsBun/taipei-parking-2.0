@@ -14,7 +14,7 @@ const Container = styled.div`
   }
 `;
 
-export default function LoginPage({ children }) {
+export default function LoginPage() {
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -51,10 +51,6 @@ export default function LoginPage({ children }) {
     setPassword(value);
   };
 
-  const handleErrorMessage = ({ children }) => {
-    setErrorMessage("");
-  };
-
   return (
     <Container>
       <Form
@@ -63,9 +59,9 @@ export default function LoginPage({ children }) {
         handleInputChange={{ handleAccountInput, handlePasswordInput }}
         handleLogin={handleLogin}
         errorMessage={errorMessage}
+        setErrorMessage={setErrorMessage}
         isLoading={isLoading}
       >
-        {children && handleErrorMessage}
       </Form>
     </Container>
   );
