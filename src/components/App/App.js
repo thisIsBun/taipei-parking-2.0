@@ -29,12 +29,17 @@ const Container = styled.div`
 function App() {
   const { theme } = useContext(ThemeContext);
   const [user, setUser] = useState(-1);
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     if (getAuthToken()) {
+      setIsLoading(true)
       getUser().then((data) => {
         if (data.status !== "error") {
           setUser(data.id);
+          setIsLoading(false);
+        } else {
+          setIsLoading(false);
         }
       });
     }
@@ -49,7 +54,7 @@ function App() {
     <div className="App" style={style}>
       <AuthContext.Provider value={{ user, setUser }}>
         <HashRouter>
-          <Navbar />
+          <Navbar isLoading={isLoading}/>
           <Container>
             <Routes>
               <Route path="/" element={<HomePage />} />

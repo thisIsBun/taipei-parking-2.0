@@ -149,9 +149,17 @@ const Span = styled.span`
   }
 `;
 
-export default function Navbar() {
+const Loading = styled.div`
+  width: 142px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+`;
+
+export default function Navbar({ isLoading }) {
   const { theme } = useContext(ThemeContext);
-  const { user, setUser } = useContext(AuthContext)
+  const { user, setUser } = useContext(AuthContext);
   let location = useLocation();
   const [mobileCheckbox, setMobileCheckbox] = useState(false);
 
@@ -165,9 +173,9 @@ export default function Navbar() {
   };
 
   const handleLogout = () => {
-    setUser(0)
-    setAuthToken("")
-  }
+    setUser(-1);
+    setAuthToken("");
+  };
 
   return (
     <NavWrapper $color={theme}>
@@ -194,28 +202,37 @@ export default function Navbar() {
         <Nav to="/" $pathActive={location.pathname === "/"} $color={theme}>
           台北車位地圖
         </Nav>
-        {user > 0 && (
-          <Nav
-            to="/save"
-            $pathActive={location.pathname === "/save"}
-            $color={theme}
-          >
-            儲存
-          </Nav>
+        {isLoading && (
+          <Loading>
+            <div className="loaders" style={{ borderColor: "#04AA6D", borderTopColor: "rgba(0, 0, 0, 0)" }}></div>
+          </Loading>
         )}
-        {user <= 0 && (
-          <Nav
-            to="/login"
-            $pathActive={location.pathname === "/login"}
-            $color={theme}
-          >
-            登入
-          </Nav>
-        )}
-        {user > 0 && (
-          <Nav to="/" $color={theme} onClick={handleLogout}>
-            登出
-          </Nav>
+        {!isLoading && (
+          <>
+            {user > 0 && (
+              <Nav
+                to="/save"
+                $pathActive={location.pathname === "/save"}
+                $color={theme}
+              >
+                儲存
+              </Nav>
+            )}
+            {user < 0 && (
+              <Nav
+                to="/login"
+                $pathActive={location.pathname === "/login"}
+                $color={theme}
+              >
+                登入
+              </Nav>
+            )}
+            {user > 0 && (
+              <Nav to="/" $color={theme} onClick={handleLogout}>
+                登出
+              </Nav>
+            )}
+          </>
         )}
       </NavbarList>
       <Label htmlFor="navbar-toggle" className="navbar-toggle-label">
