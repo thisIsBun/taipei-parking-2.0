@@ -1,4 +1,4 @@
-import { API_KEY } from "../../constants/utils";
+import { API_KEY } from "../../constants/.env.local";
 import GoogleMapReact from "google-map-react";
 import PropTypes from "prop-types";
 import styled from "styled-components";

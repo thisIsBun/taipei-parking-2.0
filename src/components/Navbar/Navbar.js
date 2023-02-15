@@ -7,6 +7,7 @@ import { MEDIA_QUERY } from "../../constants/style";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import { setAuthToken } from "../../constants/utils";
+import PropTypes from "prop-types"
 
 const NavWrapper = styled.header`
   width: 100%;
@@ -241,3 +242,7 @@ export default function Navbar({ isLoading }) {
     </NavWrapper>
   );
 }
+
+Navbar.propTypes = {
+  isLoading: PropTypes.bool,
+};

@@ -1,9 +1,10 @@
 import { getAuthToken } from "../constants/utils";
 
-const BASE_URL = "https://safe-earth-79613.herokuapp.com";
+const AUTH_URL = "https://safe-earth-79613.herokuapp.com";
+const PARK_URL = "https://tcgbusfs.blob.core.windows.net/blobtcmsv";
 
 export const login = (account, password) => {
-  return fetch(`${BASE_URL}/api/users/signin`, {
+  return fetch(`${AUTH_URL}/api/users/signin`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -17,9 +18,17 @@ export const login = (account, password) => {
 }
 
 export const getUser = () => {
-  return fetch(`${BASE_URL}/api/users/currentUser`, {
+  return fetch(`${AUTH_URL}/api/users/currentUser`, {
     headers: {
       authorization: `Bearer ${getAuthToken()}`,
     },
   }).then((res) => res.json());
 }
+
+export const getPark = () => {
+  return fetch(`${PARK_URL}/TCMSV_alldesc.json`).then(res => res.json());
+}
+
+export const getParkAvl = () => {
+  return fetch(`${PARK_URL}/TCMSV_allavailable.json`).then((res) => res.json());
+};
