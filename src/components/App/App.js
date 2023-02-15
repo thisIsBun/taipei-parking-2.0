@@ -14,7 +14,6 @@ import { MEDIA_QUERY } from "../../constants/style";
 import { AuthContext } from "../../contexts/AuthContext";
 import { getAuthToken } from "../../constants/utils";
 import { getUser } from "../../apis/WebAPI";
-import Park from "../Park";
 
 library.add(fab, fas);
 
@@ -55,7 +54,6 @@ function App() {
     <div className="App" style={style}>
       <AuthContext.Provider value={{ user, setUser }}>
         <HashRouter>
-          <Park/>
           <Navbar isLoading={isLoading}/>
           <Container>
             <Routes>

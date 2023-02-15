@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { getPark, getParkAvl } from "../../apis/WebAPI";
-import { twd97_to_latlng } from "../../constants/utils";
+import { createContext, useEffect, useState } from "react";
+import { getPark, getParkAvl } from "../apis/WebAPI";
+import { twd97_to_latlng } from "../constants/utils";
+import PropTypes from "prop-types"
 
-export default function Park() {
-  const [sortData, setSortData] = useState([]);
+export const ParkContext = createContext([])
+
+export const ParkProvider = ({children}) => {
+const [sortData, setSortData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,27 +30,27 @@ export default function Park() {
             tw97x,
             tw97y,
             area,
-            address
+            address,
           } = item;
           const { lat, lng } = twd97_to_latlng(tw97x, tw97y);
 
           const { id, availablecar, ChargeStation } = avlItem;
           if (availablecar <= 0) return null;
 
-            return {
-              id,
-              name,
-              availablecar,
-              totalcar,
-              payex,
-              address,
-              area,
-              ChargeStation,
-              tel,
-              serviceTime,
-              lat,
-              lng,
-            };
+          return {
+            id,
+            name,
+            availablecar,
+            totalcar,
+            payex,
+            address,
+            area,
+            ChargeStation,
+            tel,
+            serviceTime,
+            lat,
+            lng,
+          };
         })
         .filter((item) => item !== null);
       setSortData(newData);
@@ -55,5 +58,13 @@ export default function Park() {
     fetchData();
   }, []);
 
-  return <></>;
+  return (
+    <ParkContext.Provider value={sortData}>
+      {children}
+    </ParkContext.Provider>
+  );
+}
+
+ParkProvider.propTypes = {
+  children: PropTypes.node
 }
