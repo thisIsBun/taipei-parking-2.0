@@ -3,6 +3,8 @@ import GoogleMapReact from "google-map-react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../constants/style";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import { useContext } from "react";
 
 const MapWrapper = styled.div`
   width: 100%;
@@ -20,14 +22,16 @@ AnyReactComponent.propTypes = {
   text: PropTypes.string,
 };
 
+const defaultProps = {
+  center: {
+    lat: 25.040348,
+    lng: 121.533095,
+  },
+  zoom: 16,
+};
+
 export default function Map() {
-  const defaultProps = {
-    center: {
-      lat: 25.040348,
-      lng: 121.533095,
-    },
-    zoom: 16,
-  };
+  const {theme} = useContext(ThemeContext)
 
   return (
     <MapWrapper>
@@ -35,6 +39,7 @@ export default function Map() {
         bootstrapURLKeys={{ key: API_KEY }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
+        options={theme.mapStyle}
       >
         <AnyReactComponent lat={25.040348} lng={121.533095} text="My Marker" />
       </GoogleMapReact>
