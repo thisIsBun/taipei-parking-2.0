@@ -1,10 +1,9 @@
 import { API_KEY } from "../../constants/.env.local";
-import GoogleMapReact from "google-map-react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../constants/style";
+import { useJsApiLoader, GoogleMap, Marker, Autocomplete } from "@react-google-maps/api";
+import { useContext, useState } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
-import { useContext } from "react";
 
 const MapWrapper = styled.div`
   width: 100%;
@@ -14,35 +13,37 @@ const MapWrapper = styled.div`
   }
 `;
 
-function AnyReactComponent({ text }) {
-  return <div>{text}</div>;
-}
-
-AnyReactComponent.propTypes = {
-  text: PropTypes.string,
-};
-
-const defaultProps = {
-  center: {
-    lat: 25.040348,
-    lng: 121.533095,
-  },
-  zoom: 16,
+const center = {
+  lat: 25.040348,
+  lng: 121.533095,
 };
 
 export default function Map() {
-  const {theme} = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
+
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: API_KEY,
+    libraries: ["places"]
+  });
+
+  if (!isLoaded) {
+    return <div>Loading</div>;
+  }
 
   return (
     <MapWrapper>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: API_KEY }}
-        defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
-        options={theme.mapStyle}
+      <GoogleMap
+        center={center}
+        zoom={16}
+        mapContainerStyle={{ width: "100%", height: "100%" }}
+        options={{
+          mapTypeControl: false,
+          styles: theme.mapStyle.styles,
+          fullscreenControl: false,
+        }}
       >
-        <AnyReactComponent lat={25.040348} lng={121.533095} text="My Marker" />
-      </GoogleMapReact>
+        <Marker position={center}/>
+      </GoogleMap>
     </MapWrapper>
   );
 }
