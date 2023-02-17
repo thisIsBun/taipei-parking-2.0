@@ -10,7 +10,6 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
-import { MEDIA_QUERY } from "../../constants/style";
 import { AuthContext } from "../../contexts/AuthContext";
 import { getAuthToken } from "../../constants/utils";
 import { getUser } from "../../apis/WebAPI";
@@ -18,12 +17,9 @@ import { getUser } from "../../apis/WebAPI";
 library.add(fab, fas);
 
 const Container = styled.div`
-  width: 97%;
+  width: 98%;
   margin: 0 auto;
-  padding: 12vh 0 3vh;
-  ${MEDIA_QUERY} {
-    width: 85%;
-  }
+  padding: 12vh 0 4vh;
 `;
 
 function App() {
