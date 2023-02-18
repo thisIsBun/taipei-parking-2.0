@@ -8,12 +8,12 @@ const themes = {
     background_active: "#04AA6D",
     background_hover: "#cccccc",
     background_error: "#ffc0c7",
+    background_searchbox: "#fff",
     font_main: "#282a35",
     font_active: "#ffffff",
     font_secondary_blk: "#282D35",
     border_main: "#D6D6D6",
     button_hover: "#059862",
-    mapId: "462d2ed7823c3cf9",
     mapStyle: {
       styles: [
         {
@@ -59,12 +59,12 @@ const themes = {
     background_active: "#04AA6D",
     background_hover: "#38444d",
     background_error: "#ffc0c7",
+    background_searchbox: "#38444d",
     font_main: "#ddd",
     font_secondary_blk: "#282D35",
     font_active: "#ffffff",
     border_main: "#3C5350",
     button_hover: "#03744b",
-    mapId: "2b3eec7b64769215",
     mapStyle: {
       styles: [
         {
