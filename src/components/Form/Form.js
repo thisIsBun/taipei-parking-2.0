@@ -3,6 +3,7 @@ import { MEDIA_QUERY } from "../../constants/style";
 import React, { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import PropTypes from "prop-types";
+import Loader from "../Loader/Loader";
 
 const FormContainer = styled.form`
   width: 90%;
@@ -124,7 +125,7 @@ export default function Form({
       <FormWrapper>
         <Button $color={theme} disabled={isLoading}>
           {!isLoading && "登入"}
-          <div className={isLoading ? "loaders" : ""}></div>
+          {isLoading && <Loader/>}
         </Button>
         {errorMessage && (
           <ErrorMessage $color={theme}>{errorMessage}</ErrorMessage>

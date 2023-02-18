@@ -8,6 +8,7 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import { setAuthToken } from "../../constants/utils";
 import PropTypes from "prop-types"
+import Loader from "../Loader/Loader";
 
 const NavWrapper = styled.header`
   width: 100%;
@@ -150,14 +151,6 @@ const Span = styled.span`
   }
 `;
 
-const Loading = styled.div`
-  width: 142px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 10px;
-`;
-
 export default function Navbar({ isLoading }) {
   const { theme } = useContext(ThemeContext);
   const { user, setUser } = useContext(AuthContext);
@@ -204,9 +197,7 @@ export default function Navbar({ isLoading }) {
           台北車位地圖
         </Nav>
         {isLoading && (
-          <Loading>
-            <div className="loaders" style={{ borderColor: "#04AA6D", borderTopColor: "rgba(0, 0, 0, 0)" }}></div>
-          </Loading>
+          <Loader borderColor="#04AA6D" borderTopColor="rgba(0, 0, 0, 0)" />
         )}
         {!isLoading && (
           <>
