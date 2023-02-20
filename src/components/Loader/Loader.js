@@ -18,9 +18,9 @@ const Div = styled.div`
   animation: spin 2s linear infinite;
 `;
 
-export default function Loader({ borderColor, borderTopColor }) {
+export default function Loader({ borderColor, borderTopColor, width, height }) {
   return (
-    <Loading>
+    <Loading style={{ width, height }}>
       <Div
         style={{
           borderColor,
@@ -33,4 +33,6 @@ export default function Loader({ borderColor, borderTopColor }) {
 Loader.propTypes = {
   borderColor: PropTypes.string,
   borderTopColor: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string
 };

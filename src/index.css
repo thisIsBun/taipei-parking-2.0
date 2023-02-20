@@ -25,16 +25,6 @@ h5 {
 p {
   margin: 0;
 }
-
-.loaders {
-  border: 6px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 6px solid rgba(0, 0, 0, 0);
-  width: 30px;
-  height: 30px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
-}
 /* Safari */
 @-webkit-keyframes spin {
   0% {
@@ -44,7 +34,6 @@ p {
     -webkit-transform: rotate(360deg);
   }
 }
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -52,4 +41,52 @@ p {
   100% {
     transform: rotate(360deg);
   }
+}
+.map-container {
+  width: 100%;
+  height: 82vh;
+  position: relative;
+}
+.map-wrapper {
+  width: 100%;
+  height: 82vh;
+}
+.combobox-wrapper {
+  position: fixed;
+  top: calc(12vh + 8px);
+  left: 2vw;
+  z-index: 10;
+}
+.combobox {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
+  border-radius: 7px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 24vw;
+}
+.combobox-input {
+  width: 100%;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 12px;
+}
+.combobox-input:focus {
+  outline: none;
+}
+#listbox--1 li {
+  padding: 10px 12px;
+}
+#listbox--1 li:hover {
+  color: #282a35;
+}
+span[data-user-value=true] {
+  font-weight: bolder;
+}
+span[data-suggested-value=true] {
+  font-weight: lighter;
 }

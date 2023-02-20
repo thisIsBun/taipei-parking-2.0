@@ -1,89 +1,91 @@
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
+} from "@reach/combobox";
+import "@reach/combobox/styles.css";
+import PropTypes from "prop-types";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { useContext } from "react";
-import PropTypes from "prop-types";
-import Loader from "../Loader/Loader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Container = styled.div`
-  position: fixed;
-  top: calc(12vh + 8px);
-  left: calc(1% + 8px);
-  z-index: 10;
-  display: flex;
-`;
 
-const Wrapper = styled.div`
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
-  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
-  -moz-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
-  border-radius: 7px;
-  height: 50px;
-  padding: 10px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: ${(props) => props.$color.background_searchbox};
-  & > div {
-    width: 100%;
-  }
-`;
-const InputColumn = styled.input`
-  width: 100%;
-  border: 0px;
-  border-radius: 5px;
-  font-size: 16px;
-  padding: 12px;
-  background: ${(props) => props.$color.background_searchbox};
-  color: ${(props) => props.$color.font_main};
-  &:focus {
-    outline: none;
-  }
-`;
-
-export default function Search({
-  handlePositionCenter,
-  Autocomplete,
-  isLoading,
-}) {
+export default function Search({ setLocation }) {
   const { theme } = useContext(ThemeContext);
+  const {
+    ready,
+    value,
+    setValue,
+    suggestions: { status, data },
+    clearSuggestions,
+  } = usePlacesAutocomplete();
+
+  const handleSelect = async (value) => {
+    setValue(value, false);
+    clearSuggestions();
+
+    const results = await getGeocode({ address: value });
+    const { lat, lng } = await getLatLng(results[0]);
+    setLocation({ lat, lng });
+  };
+
   return (
-    <Container>
-      <Wrapper $color={theme} style={{ width: "24vw" }}>
-        <Autocomplete>
-          <InputColumn type="text" $color={theme} placeholder="輸入位置" />
-        </Autocomplete>
+    <Combobox
+      onSelect={handleSelect}
+      className="combobox"
+      style={{ background: `${theme.background_searchbox}` }}
+    >
+      <>
+        <ComboboxInput
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          className="combobox-input"
+          style={{
+            background: `${theme.background_searchbox}`,
+            color: `${theme.font_main}`,
+          }}
+          placeholder="輸入台北市目的地"
+          disabled={!ready}
+        />
         <FontAwesomeIcon
           icon="fa-solid fa-xmark"
-          style={{ width: "20px", height: "20px", marginLeft: "16px" }}
+          style={{ width: "20px", height: "20px", margin: "0 16px" }}
           cursor="pointer"
+          onClick={() => setValue("")}
         />
-      </Wrapper>
-      <Wrapper
-        $color={theme}
+      </>
+      <ComboboxPopover
         style={{
-          width: "50px",
-          marginLeft: "8px",
-          cursor: "pointer",
-          justifyContent: "center",
+          background: `${theme.background_searchbox}`,
+          color: `${theme.font_main}`,
+          left: "2vw",
+          width: "24vw",
+          boxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.22)",
+          WebkitBoxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.22)",
+          MozBoxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.22)",
+          borderRadius: "0 0 7px 7px",
+          borderWidth: "0",
         }}
-        onClick={handlePositionCenter}
       >
-        {isLoading && (
-          <Loader borderColor="#04AA6D" borderTopColor="rgba(0, 0, 0, 0)" />
-        )}
-        {!isLoading && (
-          <FontAwesomeIcon
-            icon="fa-solid fa-crosshairs"
-            style={{ width: "20px", height: "20px" }}
-          />
-        )}
-      </Wrapper>
-    </Container>
+        <ComboboxList>
+          {status === "OK" &&
+            data.map(({ place_id, description }) => (
+              <ComboboxOption
+                key={place_id}
+                value={description}
+              />
+            ))}
+        </ComboboxList>
+      </ComboboxPopover>
+    </Combobox>
   );
 }
 Search.propTypes = {
-  handlePositionCenter: PropTypes.func,
-  Autocomplete: PropTypes.elementType,
-  isLoading: PropTypes.bool,
+  setLocation: PropTypes.func,
 };

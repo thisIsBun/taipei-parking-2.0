@@ -20,7 +20,10 @@
     "react-scripts": "4.0.0",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4",
-    "@react-google-maps/api": "^2.7.0"
+    "@react-google-maps/api": "^2.7.0",
+    "@reach/combobox": "^0.16.5",
+    "react-google-autocomplete": "^2.6.1",
+    "use-places-autocomplete": "^1.11.0"
   },
   "scripts": {
     "start": "react-scripts start",
