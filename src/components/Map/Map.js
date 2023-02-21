@@ -4,11 +4,13 @@ import {
   Marker,
   Circle,
   MarkerClusterer,
+  InfoWindow,
 } from "@react-google-maps/api";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { ParkContext } from "../../contexts/ParkContext";
 import { circleOptions } from "../../constants/utils";
 import Search from "../Search/";
+import Hover from "../Hover/Hover";
 
 export default function Map() {
   const [location, setLocation] = useState();
@@ -25,8 +27,8 @@ export default function Map() {
     [theme.mapStyle.styles]
   );
   const mapRef = useRef();
-
   const onLoad = useCallback((map) => (mapRef.current = map), []);
+  const [hoverMarker, setHoverMarker] = useState("");
 
   return (
     <div className="map-container">
@@ -58,6 +60,7 @@ export default function Map() {
                         key={park.id}
                         clusterer={clusterer}
                         icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+                        onMouseOver={() => setHoverMarker(park)}
                       />
                     );
                   })
@@ -79,6 +82,17 @@ export default function Map() {
                 options={circleOptions.farOptions}
               />
             </>
+          )}
+          {hoverMarker && (
+            <InfoWindow
+              position={{ lat: hoverMarker.lat, lng: hoverMarker.lng }}
+              options={{
+                pixelOffset: new window.google.maps.Size(0, -20),
+              }}
+              onCloseClick={() => setHoverMarker("")}
+            >
+              <Hover hoverMarker={hoverMarker} />
+            </InfoWindow>
           )}
         </GoogleMap>
       </div>
