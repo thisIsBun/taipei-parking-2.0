@@ -90,17 +90,3 @@ span[data-user-value=true] {
 span[data-suggested-value=true] {
   font-weight: lighter;
 }
-.gm-style .gm-style-iw-d::-webkit-scrollbar-track,
-.gm-style .gm-style-iw-d::-webkit-scrollbar-track-piece,
-.gm-style .gm-style-iw-c,
-.gm-style .gm-style-iw-t::after {
-  background: #F2F2F2;
-}
-.gm-style .gm-style-iw-tc::after {
-  background-color: #F2F2F2;
-}
-.gm-style .gm-style-iw-c {
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
-  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
-  -moz-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
-}

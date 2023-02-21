@@ -1,11 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
-import { useContext,useLayoutEffect } from "react";
+import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import PropTypes from "prop-types";
 
 const Container = styled.div`
-  background: ${(props) => props.$color.background_main};
   color: ${(props) => props.$color.font_secondary_blk};
   padding: 3px 0 0 5px;
 `;
