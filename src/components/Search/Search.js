@@ -61,16 +61,18 @@ export default function Search({ setLocation }) {
         />
       </>
       <ComboboxPopover
+        className="combobox-popover"
         style={{
           background: `${theme.background_searchbox}`,
           color: `${theme.font_main}`,
           left: "2vw",
-          width: "24vw",
+          width: "96vw",
           boxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.22)",
           WebkitBoxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.22)",
           MozBoxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.22)",
           borderRadius: "0 0 7px 7px",
           borderWidth: "0",
+          padding: (status ? "12px 0" : "0")
         }}
       >
         <ComboboxList>

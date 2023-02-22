@@ -62,7 +62,7 @@ export default function Hover({hoverMarker: { availablecar, ChargeStation }}) {
         </Box>
         {ChargeStation && (
           <Box style={{ background: "#E67E22" }}>
-            <Title $color={theme}>充電樁</Title>
+            <Title $color={theme}>提供充電樁</Title>
             <FontAwesomeIcon
               icon="fa-solid fa-circle-check"
               style={fontAwesomeStyle}
@@ -72,7 +72,7 @@ export default function Hover({hoverMarker: { availablecar, ChargeStation }}) {
 
         {!ChargeStation && (
           <Box style={{ background: "#AFABAB" }}>
-            <Title $color={theme}>充電樁</Title>
+            <Title $color={theme}>提供充電樁</Title>
             <FontAwesomeIcon
               icon="fa-solid fa-circle-xmark"
               style={fontAwesomeStyle}
