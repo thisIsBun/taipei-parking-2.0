@@ -10,7 +10,7 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { ParkContext } from "../../contexts/ParkContext";
 import { circleOptions } from "../../constants/utils";
 import Search from "../Search/";
-import Hover from "../Hover/Hover";
+import Tooltip from "../Tooltip/Tooltip";
 
 export default function Map() {
   const [location, setLocation] = useState();
@@ -91,7 +91,7 @@ export default function Map() {
               }}
               onCloseClick={() => setHoverMarker("")}
             >
-              <Hover hoverMarker={hoverMarker} />
+              <Tooltip hoverMarker={hoverMarker} />
             </InfoWindow>
           )}
         </GoogleMap>

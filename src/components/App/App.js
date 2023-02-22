@@ -10,11 +10,12 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
 import { AuthContext } from "../../contexts/AuthContext";
 import { getAuthToken } from "../../constants/utils";
 import { getUser } from "../../apis/WebAPI";
 
-library.add(fab, fas);
+library.add(fab, fas, far);
 
 const Container = styled.div`
   width: 98%;

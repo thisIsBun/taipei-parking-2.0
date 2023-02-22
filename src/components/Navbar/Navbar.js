@@ -9,6 +9,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { setAuthToken } from "../../constants/utils";
 import PropTypes from "prop-types"
 import Loader from "../Loader/Loader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NavWrapper = styled.header`
   width: 100%;
@@ -17,7 +18,7 @@ const NavWrapper = styled.header`
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
   -moz-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
   position: fixed;
-  z-index: 10;
+  z-index: 99;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,6 +61,7 @@ const Nav = styled(Link)`
   opacity: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 30px;
   &:hover {
     background: ${(props) =>
@@ -208,6 +210,12 @@ export default function Navbar({ isLoading }) {
                 $color={theme}
               >
                 儲存
+                <FontAwesomeIcon
+                  icon="fa-regular fa-bookmark"
+                  style={{
+                    marginLeft: "6px",
+                  }}
+                />
               </Nav>
             )}
             {user < 0 && (

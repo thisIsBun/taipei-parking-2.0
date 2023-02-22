@@ -45,7 +45,7 @@ const H1 = styled.h1`
   color: ${(props) => props.$color.font_active};
 `;
 
-export default function Hover({hoverMarker: { availablecar, ChargeStation }}) {
+export default function Tooltip({hoverMarker: { availablecar, ChargeStation }}) {
   const { theme } = useContext(ThemeContext);
   const fontAwesomeStyle = {
     width: "24px",
@@ -81,11 +81,11 @@ export default function Hover({hoverMarker: { availablecar, ChargeStation }}) {
         )}
       </Wrapper>
 
-      <P>*點擊查看詳細資訊</P>
+      <P>*點擊標記看詳細資訊</P>
     </Container>
   );
 }
-Hover.propTypes = {
+Tooltip.propTypes = {
   hoverMarker: PropTypes.object,
   availablecar: PropTypes.number,
   ChargeStation: PropTypes.object,
