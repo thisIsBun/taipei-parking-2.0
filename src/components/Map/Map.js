@@ -11,6 +11,7 @@ import { ParkContext } from "../../contexts/ParkContext";
 import { circleOptions } from "../../constants/utils";
 import Search from "../Search/";
 import Tooltip from "../Tooltip/Tooltip";
+import Modal from "../Modal"
 
 export default function Map() {
   const [location, setLocation] = useState();
@@ -29,6 +30,7 @@ export default function Map() {
   const mapRef = useRef();
   const onLoad = useCallback((map) => (mapRef.current = map), []);
   const [hoverMarker, setHoverMarker] = useState("");
+  const [clickMarker, setClickMarker] = useState("");
 
   return (
     <div className="map-container">
@@ -61,6 +63,10 @@ export default function Map() {
                         clusterer={clusterer}
                         icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
                         onMouseOver={() => setHoverMarker(park)}
+                        onClick={() => {
+                          setClickMarker(park);
+                          setHoverMarker("");
+                        }}
                       />
                     );
                   })
@@ -87,11 +93,22 @@ export default function Map() {
             <InfoWindow
               position={{ lat: hoverMarker.lat, lng: hoverMarker.lng }}
               options={{
-                pixelOffset: new window.google.maps.Size(0, -20),
+                pixelOffset: new window.google.maps.Size(0, -30),
               }}
               onCloseClick={() => setHoverMarker("")}
             >
               <Tooltip hoverMarker={hoverMarker} />
+            </InfoWindow>
+          )}
+          {clickMarker && (
+            <InfoWindow
+              position={{ lat: clickMarker.lat, lng: clickMarker.lng }}
+              options={{
+                pixelOffset: new window.google.maps.Size(0, -20),
+              }}
+              onCloseClick={() => setClickMarker("")}
+            >
+              <Modal clickMarker={clickMarker} location={location} />
             </InfoWindow>
           )}
         </GoogleMap>
