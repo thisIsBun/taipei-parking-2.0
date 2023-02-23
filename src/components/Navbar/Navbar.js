@@ -9,7 +9,6 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { setAuthToken } from "../../constants/utils";
 import PropTypes from "prop-types"
 import Loader from "../Loader/Loader";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NavWrapper = styled.header`
   width: 100%;

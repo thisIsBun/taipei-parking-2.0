@@ -17,7 +17,7 @@ export default function Map() {
   const [location, setLocation] = useState();
   const { theme } = useContext(ThemeContext);
   const sortData = useContext(ParkContext);
-  const center = useMemo(() => ({ lat: 25.03369, lng: 121.564128 }), []);
+  const center = useMemo(() => ({ lat: 25.0336752, lng: 121.5648831 }), []);
   const options = useMemo(
     () => ({
       streetViewControl: false,

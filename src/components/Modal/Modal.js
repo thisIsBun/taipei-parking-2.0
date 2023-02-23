@@ -49,7 +49,6 @@ const ActionWrapper = styled.a`
   }
   ${MEDIA_QUERY} {
     width: auto;
-    height: auto;
     padding: 4px 12px;
   }
 `;
@@ -88,9 +87,6 @@ const Description = styled.p`
 const OverflowDiv = styled.div`
   max-height: 70px;
   overflow-y: scroll;
-  // ${MEDIA_QUERY} {
-  //   max-height: 50px;
-  // }
 `;
 
 const iconSize = {
@@ -146,4 +142,5 @@ Modal.propTypes = {
   area: PropTypes.string,
   address: PropTypes.string,
   serviceTime: PropTypes.string,
+  location: PropTypes.string,
 };
