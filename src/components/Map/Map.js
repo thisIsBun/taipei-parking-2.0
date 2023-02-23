@@ -12,6 +12,7 @@ import { circleOptions } from "../../constants/utils";
 import Search from "../Search/";
 import Tooltip from "../Tooltip/Tooltip";
 import Modal from "../Modal"
+import Locator from "../Locator";
 
 export default function Map() {
   const [location, setLocation] = useState();
@@ -31,6 +32,19 @@ export default function Map() {
   const onLoad = useCallback((map) => (mapRef.current = map), []);
   const [hoverMarker, setHoverMarker] = useState("");
   const [clickMarker, setClickMarker] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
+  const [isDeviceLocate, setIsDeviceLocate] = useState(false)
+
+  const handleLocator = () => {
+    setIsLoading(true)
+    navigator.geolocation.getCurrentPosition((position) => {
+      const {coords: {latitude, longitude}} = position
+      setLocation({ lat: latitude, lng: longitude });
+      mapRef.current.panTo({ lat: latitude, lng: longitude });
+      setIsLoading(false);
+      setIsDeviceLocate(true)
+    })
+  }
 
   return (
     <div className="map-container">
@@ -39,7 +53,13 @@ export default function Map() {
           setLocation={(location) => {
             setLocation(location);
             mapRef.current.panTo(location);
+            setIsDeviceLocate(false);
           }}
+        />
+        <Locator
+          handleLocator={handleLocator}
+          isLoading={isLoading}
+          isDeviceLocate={isDeviceLocate}
         />
       </div>
       <div>

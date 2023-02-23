@@ -55,7 +55,7 @@ export default function Search({ setLocation }) {
         />
         <FontAwesomeIcon
           icon="fa-solid fa-xmark"
-          style={{ width: "20px", height: "20px", margin: "0 16px" }}
+          style={{ width: "22px", height: "22px", margin: "0 16px" }}
           cursor="pointer"
           onClick={() => setValue("")}
         />
@@ -72,16 +72,13 @@ export default function Search({ setLocation }) {
           MozBoxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.22)",
           borderRadius: "0 0 7px 7px",
           borderWidth: "0",
-          padding: (status ? "12px 0" : "0")
+          padding: status ? "12px 0" : "0",
         }}
       >
         <ComboboxList>
           {status === "OK" &&
             data.map(({ place_id, description }) => (
-              <ComboboxOption
-                key={place_id}
-                value={description}
-              />
+              <ComboboxOption key={place_id} value={description} />
             ))}
         </ComboboxList>
       </ComboboxPopover>

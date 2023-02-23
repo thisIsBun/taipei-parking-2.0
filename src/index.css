@@ -56,6 +56,7 @@ p {
   top: calc(12vh + 8px);
   left: 2vw;
   z-index: 10;
+  display: flex;
 }
 .combobox {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
@@ -67,14 +68,6 @@ p {
   align-items: center;
   justify-content: space-between;
   width: 96vw;
-}
-@media screen and (min-width: 768px) {
-  .combobox {
-    width: 30vw;
-  }
-  .combobox-popover {
-    width: 30vw !important;
-  }
 }
 .combobox-input {
   width: 100%;
@@ -97,4 +90,12 @@ span[data-user-value="true"] {
 }
 span[data-suggested-value="true"] {
   font-weight: lighter;
+}
+@media screen and (min-width: 768px) {
+  .combobox {
+    width: 30vw;
+  }
+  .combobox-popover {
+    width: 30vw !important;
+  }
 }
