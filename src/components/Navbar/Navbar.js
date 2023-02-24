@@ -195,7 +195,7 @@ export default function Navbar({ isLoading }) {
         $color={theme}
       >
         <Nav to="/" $pathActive={location.pathname === "/"} $color={theme}>
-          車位地圖
+          地圖
         </Nav>
         {isLoading && (
           <Loader borderColor="#04AA6D" borderTopColor="rgba(0, 0, 0, 0)" />
@@ -209,12 +209,6 @@ export default function Navbar({ isLoading }) {
                 $color={theme}
               >
                 儲存
-                {/* <FontAwesomeIcon
-                  icon="fa-regular fa-bookmark"
-                  style={{
-                    marginLeft: "6px",
-                  }}
-                /> */}
               </Nav>
             )}
             {user < 0 && (

@@ -47,8 +47,8 @@ const SwitchCircle = styled.div`
   width: 48%;
   height: 100%;
   top: 0;
-  left: 0;
-  transition: left 0.25s ease-out;
+  right: 0;
+  transition: right 0.25s ease-out;
   background: ${(props) => props.$color.background_active};
   border-radius: 50px;
   z-index: -1;
@@ -56,8 +56,8 @@ const SwitchCircle = styled.div`
 
 const Input = styled.input`
   &:checked + ${SwitchCircle} {
-    left: 50%;
-    transition: left 0.25s ease-out;
+    right: 50%;
+    transition: right 0.25s ease-out;
   }
 `;
 

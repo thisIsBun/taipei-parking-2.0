@@ -8,19 +8,19 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { AuthContext } from "../../contexts/AuthContext";
 import { getAuthToken } from "../../constants/utils";
 import { getUser } from "../../apis/WebAPI";
 
-library.add(fab, fas, far);
+library.add(fas, far);
 
 const Container = styled.div`
   width: 98%;
+  height: 100%;
   margin: 0 auto;
-  padding: 12vh 0 4vh;
+  padding: 11.5vh 0 4vh;
 `;
 
 function App() {

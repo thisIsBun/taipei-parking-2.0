@@ -7,6 +7,7 @@ export const ParkContext = createContext([])
 
 export const ParkProvider = ({children}) => {
 const [sortData, setSortData] = useState([]);
+const [updateTime, setUpdateTime] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,6 +17,7 @@ const [sortData, setSortData] = useState([]);
       ]);
       const rawData = parkRes.data.park;
       const rawAvlData = parkAvlRes.data.park;
+      const rawAvlTime = parkAvlRes.data.UPDATETIME;
       const newData = rawData
         .map((item) => {
           const avlItem = rawAvlData.find((avl) => avl.id === item.id);
@@ -54,12 +56,13 @@ const [sortData, setSortData] = useState([]);
         })
         .filter((item) => item !== null);
       setSortData(newData);
+      setUpdateTime(rawAvlTime)
     };
     fetchData();
   }, []);
 
   return (
-    <ParkContext.Provider value={sortData}>
+    <ParkContext.Provider value={{ sortData, updateTime }}>
       {children}
     </ParkContext.Provider>
   );

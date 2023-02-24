@@ -11,13 +11,13 @@ import { ParkContext } from "../../contexts/ParkContext";
 import { circleOptions } from "../../constants/utils";
 import Search from "../Search/";
 import Tooltip from "../Tooltip/Tooltip";
-import Modal from "../Modal"
+import Modal from "../Modal";
 import Locator from "../Locator";
 
 export default function Map() {
   const [location, setLocation] = useState();
   const { theme } = useContext(ThemeContext);
-  const sortData = useContext(ParkContext);
+  const { sortData } = useContext(ParkContext);
   const center = useMemo(() => ({ lat: 25.0336752, lng: 121.5648831 }), []);
   const options = useMemo(
     () => ({
@@ -32,19 +32,21 @@ export default function Map() {
   const onLoad = useCallback((map) => (mapRef.current = map), []);
   const [hoverMarker, setHoverMarker] = useState("");
   const [clickMarker, setClickMarker] = useState("");
-  const [isLoading, setIsLoading] = useState(false)
-  const [isDeviceLocate, setIsDeviceLocate] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDeviceLocate, setIsDeviceLocate] = useState(false);
 
   const handleLocator = () => {
-    setIsLoading(true)
+    setIsLoading(true);
     navigator.geolocation.getCurrentPosition((position) => {
-      const {coords: {latitude, longitude}} = position
+      const {
+        coords: { latitude, longitude },
+      } = position;
       setLocation({ lat: latitude, lng: longitude });
       mapRef.current.panTo({ lat: latitude, lng: longitude });
       setIsLoading(false);
-      setIsDeviceLocate(true)
-    })
-  }
+      setIsDeviceLocate(true);
+    });
+  };
 
   return (
     <div className="map-container">
