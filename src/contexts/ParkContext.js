@@ -1,13 +1,13 @@
 import { createContext, useEffect, useState } from "react";
 import { getPark, getParkAvl } from "../apis/WebAPI";
 import { twd97_to_latlng } from "../constants/utils";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
-export const ParkContext = createContext([])
+export const ParkContext = createContext([]);
 
-export const ParkProvider = ({children}) => {
-const [sortData, setSortData] = useState([]);
-const [updateTime, setUpdateTime] = useState("");
+export const ParkProvider = ({ children }) => {
+  const [sortData, setSortData] = useState([]);
+  const [updateTime, setUpdateTime] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,8 +35,10 @@ const [updateTime, setUpdateTime] = useState("");
             address,
           } = item;
           const { lat, lng } = twd97_to_latlng(tw97x, tw97y);
-
+          const opening =
+            serviceTime === "00:00:00~23:59:59" ? "24小時" : serviceTime;
           const { id, availablecar, ChargeStation } = avlItem;
+          const hasChargingStation = ChargeStation === undefined ? false : true;
           if (availablecar <= 0) return null;
 
           return {
@@ -47,16 +49,16 @@ const [updateTime, setUpdateTime] = useState("");
             payex,
             address,
             area,
-            ChargeStation,
+            hasChargingStation,
             tel,
-            serviceTime,
+            opening,
             lat,
             lng,
           };
         })
         .filter((item) => item !== null);
       setSortData(newData);
-      setUpdateTime(rawAvlTime)
+      setUpdateTime(rawAvlTime);
     };
     fetchData();
   }, []);
@@ -66,8 +68,8 @@ const [updateTime, setUpdateTime] = useState("");
       {children}
     </ParkContext.Provider>
   );
-}
+};
 
 ParkProvider.propTypes = {
-  children: PropTypes.node
-}
+  children: PropTypes.node,
+};

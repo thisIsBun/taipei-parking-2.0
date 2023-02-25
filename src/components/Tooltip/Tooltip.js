@@ -45,7 +45,7 @@ const H1 = styled.h1`
   color: ${(props) => props.$color.font_active};
 `;
 
-export default function Tooltip({hoverMarker: { availablecar, ChargeStation }}) {
+export default function Tooltip({hoverMarker: { availablecar, hasChargingStation }}) {
   const { theme } = useContext(ThemeContext);
   const fontAwesomeStyle = {
     width: "24px",
@@ -60,7 +60,7 @@ export default function Tooltip({hoverMarker: { availablecar, ChargeStation }}) 
           <Title $color={theme}>空車位</Title>
           <H1 $color={theme}>{availablecar}</H1>
         </Box>
-        {ChargeStation && (
+        {hasChargingStation && (
           <Box style={{ background: "#E67E22" }}>
             <Title $color={theme}>提供充電樁</Title>
             <FontAwesomeIcon
@@ -70,7 +70,7 @@ export default function Tooltip({hoverMarker: { availablecar, ChargeStation }}) 
           </Box>
         )}
 
-        {!ChargeStation && (
+        {!hasChargingStation && (
           <Box style={{ background: "#AFABAB" }}>
             <Title $color={theme}>提供充電樁</Title>
             <FontAwesomeIcon
@@ -88,5 +88,5 @@ export default function Tooltip({hoverMarker: { availablecar, ChargeStation }}) 
 Tooltip.propTypes = {
   hoverMarker: PropTypes.object,
   availablecar: PropTypes.number,
-  ChargeStation: PropTypes.object,
+  hasChargingStation: PropTypes.bool,
 };

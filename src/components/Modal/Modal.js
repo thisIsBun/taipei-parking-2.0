@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { MEDIA_QUERY } from "../../constants/style";
+import { useState, useEffect } from "react";
 
 const Container = styled.div`
   margin: 6px 0;
@@ -94,10 +95,34 @@ const iconSize = {
   height: "16px",
 };
 
-export default function Modal({
-  clickMarker: { name, payex, area, address, serviceTime, lat, lng },
-  location,
-}) {
+function writeSaveListLocalStorage(list) {
+  window.localStorage.setItem("save-park", JSON.stringify(list));
+}
+
+export default function Modal({ clickMarker, location }) {
+  const { name, payex, area, address, opening, lat, lng, id } = clickMarker;
+
+  const [saveList, setSaveList] = useState(() => {
+    return JSON.parse(window.localStorage.getItem("save-park")) || [];
+  });
+
+  const [isSaved, setIsSaved] = useState(() => {
+    return saveList.some((list) => list.id === id);
+  });
+
+  useEffect(() => {
+    writeSaveListLocalStorage(saveList);
+    setIsSaved(saveList.some((list) => list.id === id));
+  }, [saveList, setIsSaved, id]);
+
+  const handleSaveList = () => {
+    if (isSaved) {
+      setSaveList(saveList.filter((item) => item.id !== id));
+    } else {
+      setSaveList([...saveList, clickMarker]);
+    }
+  };
+
   return (
     <Container>
       <Header>
@@ -110,9 +135,14 @@ export default function Modal({
             <ActionName>路線</ActionName>
             <FontAwesomeIcon icon="fa-regular fa-compass" style={iconSize} />
           </ActionWrapper>
-          <ActionWrapper>
+          <ActionWrapper onClick={handleSaveList}>
             <ActionName>儲存</ActionName>
-            <FontAwesomeIcon icon="fa-regular fa-bookmark" style={iconSize} />
+            {isSaved && (
+              <FontAwesomeIcon icon="fa-solid fa-bookmark" style={iconSize} />
+            )}
+            {!isSaved && (
+              <FontAwesomeIcon icon="fa-regular fa-bookmark" style={iconSize} />
+            )}
           </ActionWrapper>
         </Action>
       </Header>
@@ -125,7 +155,7 @@ export default function Modal({
         </Item>
         <Item>
           <Title>營業時間</Title>
-          <Description>{serviceTime}</Description>
+          <Description>{opening}</Description>
         </Item>
         <Item>
           <Title>地址</Title>
@@ -137,10 +167,5 @@ export default function Modal({
 }
 Modal.propTypes = {
   clickMarker: PropTypes.object,
-  name: PropTypes.string,
-  payex: PropTypes.string,
-  area: PropTypes.string,
-  address: PropTypes.string,
-  serviceTime: PropTypes.string,
-  location: PropTypes.string,
+  location: PropTypes.object,
 };

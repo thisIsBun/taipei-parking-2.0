@@ -66,7 +66,7 @@ export default function Search({ setLocation }) {
           background: `${theme.background_searchbox}`,
           color: `${theme.font_main}`,
           left: "2vw",
-          width: "96vw",
+          width: `calc(96vw - 56px)`,
           boxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.22)",
           WebkitBoxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.22)",
           MozBoxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.22)",

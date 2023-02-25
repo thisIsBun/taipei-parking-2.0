@@ -67,7 +67,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 96vw;
+  width: calc(96vw - 56px);
 }
 .combobox-input {
   width: 100%;
