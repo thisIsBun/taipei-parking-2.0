@@ -130,7 +130,7 @@ export default function Map() {
               }}
               onCloseClick={() => setClickMarker("")}
             >
-              <Modal clickMarker={clickMarker} location={location} />
+              <Modal clickMarker={clickMarker} />
             </InfoWindow>
           )}
         </GoogleMap>

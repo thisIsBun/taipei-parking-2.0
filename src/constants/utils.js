@@ -90,3 +90,12 @@ export const circleOptions = {
     fillColor: "#FF5252",
   },
 };
+
+const SAVE_NAME = "save-park"
+export function writeSaveListLocalStorage(list) {
+  window.localStorage.setItem(SAVE_NAME, JSON.stringify(list));
+}
+
+export const getSaveListLocalStorage = () => {
+  return JSON.parse(window.localStorage.getItem(SAVE_NAME));
+};

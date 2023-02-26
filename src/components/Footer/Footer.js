@@ -11,20 +11,12 @@ const FooterContainer = styled.footer`
   position: fixed;
   z-index: 10;
   bottom: 0;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
+  background: ${(props) => props.$color.background_main};
   ${MEDIA_QUERY} {
     font-size: 13px;
-  }
-`;
-
-const Hr = styled.hr`
-  display: none;
-  ${MEDIA_QUERY} {
-    display: block;
-    width: 98%;
-    margin: 0 auto;
-    height: 1.5px;
-    background: ${(props) => props.$color.border_main};
-    border: none;
   }
 `;
 
@@ -61,8 +53,7 @@ export default function Footer() {
   const { theme } = useContext(ThemeContext);
   const { updateTime } = useContext(ParkContext);
   return (
-    <FooterContainer>
-      <Hr $color={theme} />
+    <FooterContainer $color={theme}>
       <Wrapper>
         <LeftTitle>
           Website are designed and built by{" "}

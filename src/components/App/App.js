@@ -18,7 +18,6 @@ library.add(fas, far);
 
 const Container = styled.div`
   width: 98%;
-  height: 100%;
   margin: 0 auto;
   padding: 11.5vh 0 4vh;
 `;

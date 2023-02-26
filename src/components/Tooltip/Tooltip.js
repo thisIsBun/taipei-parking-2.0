@@ -60,7 +60,7 @@ export default function Tooltip({hoverMarker: { availablecar, hasChargingStation
           <Title $color={theme}>空車位</Title>
           <H1 $color={theme}>{availablecar}</H1>
         </Box>
-        {hasChargingStation && (
+        {hasChargingStation === "有" && (
           <Box style={{ background: "#E67E22" }}>
             <Title $color={theme}>提供充電樁</Title>
             <FontAwesomeIcon
@@ -70,7 +70,7 @@ export default function Tooltip({hoverMarker: { availablecar, hasChargingStation
           </Box>
         )}
 
-        {!hasChargingStation && (
+        {hasChargingStation === "無" && (
           <Box style={{ background: "#AFABAB" }}>
             <Title $color={theme}>提供充電樁</Title>
             <FontAwesomeIcon
@@ -88,5 +88,5 @@ export default function Tooltip({hoverMarker: { availablecar, hasChargingStation
 Tooltip.propTypes = {
   hoverMarker: PropTypes.object,
   availablecar: PropTypes.number,
-  hasChargingStation: PropTypes.bool,
+  hasChargingStation: PropTypes.string,
 };

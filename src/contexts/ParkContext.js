@@ -38,7 +38,7 @@ export const ParkProvider = ({ children }) => {
           const opening =
             serviceTime === "00:00:00~23:59:59" ? "24小時" : serviceTime;
           const { id, availablecar, ChargeStation } = avlItem;
-          const hasChargingStation = ChargeStation === undefined ? false : true;
+          const hasChargingStation = ChargeStation === undefined ? "無" : "有";
           if (availablecar <= 0) return null;
 
           return {

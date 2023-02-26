@@ -3,6 +3,11 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { MEDIA_QUERY } from "../../constants/style";
 import { useState, useEffect } from "react";
+import {
+  writeSaveListLocalStorage,
+  getSaveListLocalStorage,
+} from "../../constants/utils";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   margin: 6px 0;
@@ -23,15 +28,17 @@ const Header = styled.div`
 
 const H1 = styled.h1`
   font-size: 14px;
+  line-height: 1.1;
 `;
 
 const Action = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 100px;
 `;
 
-const ActionWrapper = styled.a`
+const ActionWrapper = styled(Link)`
   width: 30px;
   height: 30px;
   display: flex;
@@ -95,16 +102,9 @@ const iconSize = {
   height: "16px",
 };
 
-function writeSaveListLocalStorage(list) {
-  window.localStorage.setItem("save-park", JSON.stringify(list));
-}
-
-export default function Modal({ clickMarker, location }) {
+export default function Modal({ clickMarker }) {
   const { name, payex, area, address, opening, lat, lng, id } = clickMarker;
-
-  const [saveList, setSaveList] = useState(() => {
-    return JSON.parse(window.localStorage.getItem("save-park")) || [];
-  });
+  const [saveList, setSaveList] = useState(() => getSaveListLocalStorage() || []);
 
   const [isSaved, setIsSaved] = useState(() => {
     return saveList.some((list) => list.id === id);
@@ -119,7 +119,7 @@ export default function Modal({ clickMarker, location }) {
     if (isSaved) {
       setSaveList(saveList.filter((item) => item.id !== id));
     } else {
-      setSaveList([...saveList, clickMarker]);
+      setSaveList([clickMarker, ...saveList]);
     }
   };
 
@@ -129,13 +129,13 @@ export default function Modal({ clickMarker, location }) {
         <H1>{name}</H1>
         <Action>
           <ActionWrapper
-            href={`https://www.google.com/maps/dir/?api=1&origin=${location.lat},${location.lng}&destination=${lat},${lng}&travelmode=driving`}
+            to={`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`}
             target="_blank"
           >
             <ActionName>路線</ActionName>
             <FontAwesomeIcon icon="fa-regular fa-compass" style={iconSize} />
           </ActionWrapper>
-          <ActionWrapper onClick={handleSaveList}>
+          <ActionWrapper onClick={handleSaveList} to="#">
             <ActionName>儲存</ActionName>
             {isSaved && (
               <FontAwesomeIcon icon="fa-solid fa-bookmark" style={iconSize} />
@@ -167,5 +167,4 @@ export default function Modal({ clickMarker, location }) {
 }
 Modal.propTypes = {
   clickMarker: PropTypes.object,
-  location: PropTypes.object,
 };

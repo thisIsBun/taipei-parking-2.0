@@ -21,6 +21,7 @@ const NavWrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
+  background: ${props => props.$color.background_main};
   ${MEDIA_QUERY} {
     display: grid;
     grid-template-columns: 1fr auto minmax(400px, 3fr) 1fr;
