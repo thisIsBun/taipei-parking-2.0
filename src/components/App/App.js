@@ -17,9 +17,9 @@ import { getUser } from "../../apis/WebAPI";
 library.add(fas, far);
 
 const Container = styled.div`
-  width: 98%;
   margin: 0 auto;
-  padding: 11.5vh 0 4vh;
+  padding: 11.5vh 1% 4vh;
+  background: ${props => props.$color.background_main};
 `;
 
 function App() {
@@ -51,7 +51,7 @@ function App() {
       <AuthContext.Provider value={{ user, setUser }}>
         <HashRouter>
           <Navbar isLoading={isLoading}/>
-          <Container>
+          <Container $color={theme}>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/save" element={<SavePage />} />

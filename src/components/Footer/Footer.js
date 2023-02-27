@@ -11,6 +11,7 @@ const FooterContainer = styled.footer`
   position: fixed;
   z-index: 10;
   bottom: 0;
+  min-height: 4vh;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
   -moz-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);
