@@ -12,6 +12,7 @@ const themes = {
     font_main: "#282a35",
     font_active: "#ffffff",
     font_secondary_blk: "#282D35",
+    font_card_main: "#115E5E",
     border_main: "#D6D6D6",
     button_hover: "#059862",
     mapStyle: {
@@ -61,8 +62,9 @@ const themes = {
     background_error: "#ffc0c7",
     background_searchbox: "#38444d",
     font_main: "#ddd",
-    font_secondary_blk: "#282D35",
     font_active: "#ffffff",
+    font_secondary_blk: "#282D35",
+    font_card_main: "#ddd",
     border_main: "#3C5350",
     button_hover: "#03744b",
     mapStyle: {

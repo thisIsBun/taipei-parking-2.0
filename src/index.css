@@ -79,10 +79,10 @@ p {
 .combobox-input:focus {
   outline: none;
 }
-#listbox--1 li {
-  padding: 12px 12px;
+[data-reach-combobox-option] {
+  padding: 12px 12px !important;
 }
-#listbox--1 li:hover {
+[data-reach-combobox-option]:hover {
   color: #282a35;
 }
 span[data-user-value="true"] {

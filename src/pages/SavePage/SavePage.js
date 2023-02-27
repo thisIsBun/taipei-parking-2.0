@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Table from "../../components/Table";
+import Card from "../../components/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
@@ -101,27 +102,30 @@ function TableAction({ item, handleDeleteList }) {
 export default function SavePage() {
   const { theme } = useContext(ThemeContext);
   const { sortData } = useContext(ParkContext);
-  const [listView, setListView] = useState(true);
-  const [saveList, setSaveList] = useState(() => getSaveListLocalStorage() || []);
+  const [cardView, setCardView] = useState(true);
+  const [saveList, setSaveList] = useState(
+    () => getSaveListLocalStorage() || []
+  );
 
   useEffect(() => {
     writeSaveListLocalStorage(saveList);
   }, [saveList]);
 
   const handleViewChange = () => {
-    setListView(!listView);
+    setCardView(!cardView);
+  };
+
+  const handleDeleteList = (id) => {
+    setSaveList(saveList.filter((item) => item.id !== id));
   };
 
   const data = useMemo(() => {
-    const handleDeleteList = (id) => {
-      setSaveList(saveList.filter((item) => item.id !== id));
-    };
     const newData = saveList.map((item) => {
       const avlItem = sortData.find((avl) => avl.id === item.id);
       if (!avlItem) {
         return {
           ...item,
-          availablecar: "無空位",
+          availablecar: "已滿",
           action: (
             <TableAction item={item} handleDeleteList={handleDeleteList} />
           ),
@@ -197,22 +201,29 @@ export default function SavePage() {
         <Action>
           <ActionWrapper
             $color={theme}
-            $view={listView}
-            onClick={handleViewChange}
-          >
-            <FontAwesomeIcon icon="fa-solid fa-list" style={viewIconStyle} />
-          </ActionWrapper>
-          <ActionWrapper
-            $color={theme}
-            $view={listView}
+            $view={cardView}
             onClick={handleViewChange}
           >
             <FontAwesomeIcon icon="fa-solid fa-grip" style={viewIconStyle} />
           </ActionWrapper>
+          <ActionWrapper
+            $color={theme}
+            $view={cardView}
+            onClick={handleViewChange}
+          >
+            <FontAwesomeIcon icon="fa-solid fa-list" style={viewIconStyle} />
+          </ActionWrapper>
         </Action>
       </Header>
       <Body>
-        <Table columns={columns} data={data} />
+        {cardView && (
+          <Card
+            columns={columns}
+            data={data}
+            handleDeleteList={handleDeleteList}
+          />
+        )}
+        {!cardView && <Table columns={columns} data={data} />}
       </Body>
     </Container>
   );

@@ -35,7 +35,7 @@ const Action = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 100px;
+  min-width: 160px;
 `;
 
 const ActionWrapper = styled(Link)`
@@ -46,7 +46,6 @@ const ActionWrapper = styled(Link)`
   align-items: center;
   border-radius: 50px;
   border: 1px solid #117577;
-  cursor: pointer;
   color: #117577;
   text-decoration: none;
   & + & {
