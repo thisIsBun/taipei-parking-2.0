@@ -4,6 +4,7 @@ import SavePage from "../../pages/SavePage";
 import LoginPage from "../../pages/LoginPage";
 import SignupPage from "../../pages/SignupPage";
 import Footer from "../Footer";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import styled from "styled-components";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
@@ -20,17 +21,17 @@ library.add(fas, far);
 const Container = styled.div`
   margin: 0 auto;
   padding: 11.5vh 1% 4vh;
-  background: ${props => props.$color.background_main};
+  background: ${(props) => props.$color.background_main};
 `;
 
 function App() {
   const { theme } = useContext(ThemeContext);
   const [user, setUser] = useState(-1);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (getAuthToken()) {
-      setIsLoading(true)
+      setIsLoading(true);
       getUser().then((data) => {
         if (data.status !== "error") {
           setUser(data.id);
@@ -55,7 +56,14 @@ function App() {
           <Container $color={theme}>
             <Routes>
               <Route path="/" element={<HomePage />} />
-              {user > 0 && <Route path="/save" element={<SavePage />} />}
+              <Route
+                path="/save"
+                element={
+                  <ProtectedRoute user={user}>
+                    <SavePage />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
             </Routes>

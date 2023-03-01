@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Form from "../../components/Form";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../constants/style";
-import Swal from "sweetalert2";
+import { Toast } from "../../constants/utils";
 
 const Container = styled.div`
   ${MEDIA_QUERY} {
@@ -34,12 +34,7 @@ export default function SignupPage() {
         setIsLoading(false);
         return setErrorMessage(data.message);
       } else if (data.status === "success") {
-        Swal.fire({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          icon: "success",
+        Toast.fire({
           title: "註冊成功，請登入帳號",
         });
         setIsLoading(false);

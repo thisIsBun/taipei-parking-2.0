@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 const TOKEN_NAME = "token";
 
 export const setAuthToken = (token) => {
@@ -130,3 +132,11 @@ export function writeSaveListLocalStorage(list) {
 export const getSaveListLocalStorage = () => {
   return JSON.parse(window.localStorage.getItem(SAVE_NAME));
 };
+
+export const Toast = Swal.mixin({
+  toast: true,
+  position: "bottom-end",
+  showConfirmButton: false,
+  timer: 3000,
+  icon: "success",
+});

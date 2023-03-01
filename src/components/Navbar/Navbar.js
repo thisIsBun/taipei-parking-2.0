@@ -9,6 +9,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { setAuthToken } from "../../constants/utils";
 import PropTypes from "prop-types";
 import Loader from "../Loader/Loader";
+import { Toast } from "../../constants/utils";
 
 const NavWrapper = styled.header`
   width: 100%;
@@ -171,6 +172,7 @@ export default function Navbar({ isLoading }) {
   const handleLogout = () => {
     setUser(-1);
     setAuthToken("");
+    Toast.fire({ title: "登出成功" });
   };
 
   return (
