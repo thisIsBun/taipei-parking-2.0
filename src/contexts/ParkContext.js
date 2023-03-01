@@ -8,6 +8,7 @@ export const ParkContext = createContext([]);
 export const ParkProvider = ({ children }) => {
   const [sortData, setSortData] = useState([]);
   const [updateTime, setUpdateTime] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,12 +60,14 @@ export const ParkProvider = ({ children }) => {
         .filter((item) => item !== null);
       setSortData(newData);
       setUpdateTime(rawAvlTime);
+      setIsLoading(false);
     };
     fetchData();
+    setIsLoading(true);
   }, []);
 
   return (
-    <ParkContext.Provider value={{ sortData, updateTime }}>
+    <ParkContext.Provider value={{ sortData, updateTime, isLoading }}>
       {children}
     </ParkContext.Provider>
   );

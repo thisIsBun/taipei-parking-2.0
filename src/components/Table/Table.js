@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useTable, useSortBy } from "react-table";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 
 const sortIconStyle = {
   marginLeft: "6px",
@@ -105,5 +105,5 @@ export default function Table({ columns, data }) {
 }
 Table.propTypes = {
   columns: PropTypes.array,
-  data: PropTypes.array
-}
+  data: PropTypes.array,
+};

@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import { ParkContext } from "../../contexts/ParkContext";
+import Loader from "../Loader";
 
 const Container = styled.div`
   width: 100%;
@@ -109,7 +111,7 @@ const ActionWrapper = styled(Link)`
 `;
 
 const ActionName = styled.span`
-margin-right: 8px;
+  margin-right: 8px;
 `;
 
 const headerIconStyle = {
@@ -129,6 +131,7 @@ const OverflowDiv = styled.div`
 
 export default function Card({ data, handleDeleteList }) {
   const { theme } = useContext(ThemeContext);
+  const { isLoading } = useContext(ParkContext);
   return (
     <Container $color={theme}>
       {data.map((item) => {
@@ -143,9 +146,12 @@ export default function Card({ data, handleDeleteList }) {
                 }}
               >
                 <BoxTitle $color={theme}>即時空位 / 總車位</BoxTitle>
-                <H1>
-                  {item.availablecar} / {item.totalcar}
-                </H1>
+                {isLoading && <Loader />}
+                {!isLoading && (
+                  <H1>
+                    {item.availablecar} / {item.totalcar}
+                  </H1>
+                )}
               </Box>
               {item.hasChargingStation === "有" && (
                 <Box style={{ background: "#E67E22" }}>
@@ -218,5 +224,5 @@ export default function Card({ data, handleDeleteList }) {
 }
 Card.propTypes = {
   data: PropTypes.array,
-  handleDeleteList: PropTypes.func
+  handleDeleteList: PropTypes.func,
 };
