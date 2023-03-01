@@ -2,6 +2,7 @@ import Navbar from "../Navbar/Navbar";
 import HomePage from "../../pages/HomePage/HomePage";
 import SavePage from "../../pages/SavePage";
 import LoginPage from "../../pages/LoginPage";
+import SignupPage from "../../pages/SignupPage";
 import Footer from "../Footer";
 import styled from "styled-components";
 import { HashRouter, Routes, Route } from "react-router-dom";
@@ -50,12 +51,13 @@ function App() {
     <div className="App" style={style}>
       <AuthContext.Provider value={{ user, setUser }}>
         <HashRouter>
-          <Navbar isLoading={isLoading}/>
+          <Navbar isLoading={isLoading} />
           <Container $color={theme}>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/save" element={<SavePage />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
             </Routes>
           </Container>
           <Footer />

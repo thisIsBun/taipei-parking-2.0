@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import PropTypes from "prop-types";
 import Loader from "../Loader/Loader";
+import { Link, useLocation } from "react-router-dom";
 
 const FormContainer = styled.form`
   width: 90%;
@@ -50,6 +51,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
+  width: 100%;
   font-size: 16px;
   background: ${(props) => props.$color.background_active};
   color: ${(props) => props.$color.font_active};
@@ -67,6 +69,15 @@ const Button = styled.button`
   }
 `;
 
+const AccountAction = styled(Link)`
+  text-decoration: none;
+  color: ${(props) => props.$color.background_active};
+  font-size: 12px;
+  &:hover {
+    color: ${(props) => props.$color.button_hover};
+  }
+`;
+
 const ErrorMessage = styled.div`
   border-radius: 5px;
   font-size: 12px;
@@ -76,9 +87,12 @@ const ErrorMessage = styled.div`
 `;
 
 export default function Form({
+  title,
+  btnName,
   account,
   password,
   handleLogin,
+  handleSignup,
   errorMessage,
   isLoading,
   setErrorMessage,
@@ -86,17 +100,40 @@ export default function Form({
   setPassword,
 }) {
   const { theme } = useContext(ThemeContext);
+  const location = useLocation();
 
   return (
     <FormContainer
       $color={theme}
       onSubmit={(e) => {
-        handleLogin(e);
+        if (location.pathname === "/login") {
+          handleLogin(e);
+        } else if (location.pathname === "/signup") {
+          handleSignup(e);
+        }
       }}
     >
-      <FormTitle>Log in</FormTitle>
+      <FormTitle>{title}</FormTitle>
       <FormWrapper>
-        <Label>Account</Label>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Label>Account</Label>
+          {location.pathname === "/login" && (
+            <AccountAction to="/signup" $color={theme}>
+              註冊新帳號？
+            </AccountAction>
+          )}
+          {location.pathname === "/signup" && (
+            <AccountAction to="/login" $color={theme}>
+              登入帳號？
+            </AccountAction>
+          )}
+        </div>
         <Input
           $color={theme}
           value={account}
@@ -124,8 +161,8 @@ export default function Form({
       </FormWrapper>
       <FormWrapper>
         <Button $color={theme} disabled={isLoading}>
-          {!isLoading && "登入"}
-          {isLoading && <Loader/>}
+          {!isLoading && btnName}
+          {isLoading && <Loader />}
         </Button>
         {errorMessage && (
           <ErrorMessage $color={theme}>{errorMessage}</ErrorMessage>
@@ -136,9 +173,12 @@ export default function Form({
 }
 
 Form.propTypes = {
+  title: PropTypes.string,
+  btnName: PropTypes.string,
   account: PropTypes.string,
   password: PropTypes.string,
   handleLogin: PropTypes.func,
+  handleSignup: PropTypes.func,
   errorMessage: PropTypes.string,
   isLoading: PropTypes.bool,
   setErrorMessage: PropTypes.func,

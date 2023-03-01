@@ -13,9 +13,21 @@ export const login = (account, password) => {
       account,
       password,
     }),
-  })
-    .then((res) => res.json())
-}
+  }).then((res) => res.json());
+};
+
+export const signup = (data) => {
+  console.log(data);
+  return fetch(`${AUTH_URL}/api/users`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      ...data,
+    }),
+  }).then((res) => res.json());
+};
 
 export const getUser = () => {
   return fetch(`${AUTH_URL}/api/users/currentUser`, {
@@ -23,11 +35,11 @@ export const getUser = () => {
       authorization: `Bearer ${getAuthToken()}`,
     },
   }).then((res) => res.json());
-}
+};
 
 export const getPark = () => {
-  return fetch(`${PARK_URL}/TCMSV_alldesc.json`).then(res => res.json());
-}
+  return fetch(`${PARK_URL}/TCMSV_alldesc.json`).then((res) => res.json());
+};
 
 export const getParkAvl = () => {
   return fetch(`${PARK_URL}/TCMSV_allavailable.json`).then((res) => res.json());

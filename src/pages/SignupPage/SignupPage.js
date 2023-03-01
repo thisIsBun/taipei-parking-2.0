@@ -1,7 +1,5 @@
-import React, { useState, useContext } from "react";
-import { login } from "../../apis/WebAPI";
-import { setAuthToken } from "../../constants/utils";
-import { AuthContext } from "../../contexts/AuthContext";
+import React, { useState } from "react";
+import { signup } from "../../apis/WebAPI";
 import { useNavigate } from "react-router-dom";
 import Form from "../../components/Form";
 import styled from "styled-components";
@@ -14,45 +12,44 @@ const Container = styled.div`
   }
 `;
 
-export default function LoginPage() {
+export default function SignupPage() {
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { setUser } = useContext(AuthContext);
   const navigator = useNavigate();
 
-  const handleLogin = (e) => {
+
+  const handleSignup = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    login(account, password)
-      .then((data) => {
-        if (data.status === "error") {
-          setIsLoading(false);
-          return setErrorMessage(data.message);
-        } else if (data.status === "success") {
-          setIsLoading(false);
-          setAuthToken(data.data.token);
-          setUser(data.data.user.id);
-          navigator("/");
-        }
-      })
-      .catch((err) => {
+    signup({
+      account,
+      password,
+      name: "bun",
+      email: `${Math.random()}@gmail.com`,
+      checkPassword: password,
+    }).then((data) => {
+      if (data.status === "error") {
         setIsLoading(false);
-        return setErrorMessage(err.message);
-      });
+        return setErrorMessage(data.message);
+      } else if (data.status === "success") {
+        setIsLoading(false);
+        navigator("/login");
+      }
+    });
   };
 
   return (
     <Container>
       <Form
-        title="Log in"
-        btnName="登入"
+        title="Sign up"
+        btnName="註冊"
         account={account}
         password={password}
         setAccount={setAccount}
         setPassword={setPassword}
-        handleLogin={handleLogin}
+        handleSignup={handleSignup}
         errorMessage={errorMessage}
         setErrorMessage={setErrorMessage}
         isLoading={isLoading}

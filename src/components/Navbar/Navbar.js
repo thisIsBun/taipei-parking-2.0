@@ -7,7 +7,7 @@ import { MEDIA_QUERY } from "../../constants/style";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import { setAuthToken } from "../../constants/utils";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import Loader from "../Loader/Loader";
 
 const NavWrapper = styled.header`
@@ -21,7 +21,7 @@ const NavWrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${props => props.$color.background_main};
+  background: ${(props) => props.$color.background_main};
   ${MEDIA_QUERY} {
     display: grid;
     grid-template-columns: 1fr auto minmax(400px, 3fr) 1fr;
@@ -212,13 +212,22 @@ export default function Navbar({ isLoading }) {
                 儲存
               </Nav>
             )}
-            {user < 0 && (
+            {user < 0 && location.pathname === "/login" && (
               <Nav
                 to="/login"
                 $pathActive={location.pathname === "/login"}
                 $color={theme}
               >
                 登入
+              </Nav>
+            )}
+            {user < 0 && location.pathname === "/signup" && (
+              <Nav
+                to="/signup"
+                $pathActive={location.pathname === "/signup"}
+                $color={theme}
+              >
+                註冊
               </Nav>
             )}
             {user > 0 && (

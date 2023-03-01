@@ -201,9 +201,9 @@ export default function Card({ data, handleDeleteList }) {
                   $color={theme}
                   onClick={() => handleDeleteList(item.id)}
                 >
-                  <ActionName>儲存</ActionName>
+                  <ActionName>刪除</ActionName>
                   <FontAwesomeIcon
-                    icon="fa-solid fa-bookmark"
+                    icon="fa-solid fa-trash-can"
                     style={bodyIconStyle}
                   />
                 </ActionWrapper>
