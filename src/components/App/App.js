@@ -55,7 +55,7 @@ function App() {
           <Container $color={theme}>
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/save" element={<SavePage />} />
+              {user > 0 && <Route path="/save" element={<SavePage />} />}
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
             </Routes>

@@ -212,15 +212,16 @@ export default function Navbar({ isLoading }) {
                 儲存
               </Nav>
             )}
-            {user < 0 && location.pathname === "/login" && (
-              <Nav
-                to="/login"
-                $pathActive={location.pathname === "/login"}
-                $color={theme}
-              >
-                登入
-              </Nav>
-            )}
+            {user < 0 &&
+              (location.pathname === "/login" || location.pathname === "/") && (
+                <Nav
+                  to="/login"
+                  $pathActive={location.pathname === "/login"}
+                  $color={theme}
+                >
+                  登入
+                </Nav>
+              )}
             {user < 0 && location.pathname === "/signup" && (
               <Nav
                 to="/signup"

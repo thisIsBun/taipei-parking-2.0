@@ -91,6 +91,9 @@ span[data-user-value="true"] {
 span[data-suggested-value="true"] {
   font-weight: lighter;
 }
+#swal2-title {
+  line-height: 1.5;
+}
 @media screen and (min-width: 768px) {
   .combobox {
     width: 30vw;

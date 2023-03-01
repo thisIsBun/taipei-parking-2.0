@@ -17,7 +17,6 @@ export const login = (account, password) => {
 };
 
 export const signup = (data) => {
-  console.log(data);
   return fetch(`${AUTH_URL}/api/users`, {
     method: "POST",
     headers: {
