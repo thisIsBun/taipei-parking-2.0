@@ -11,7 +11,7 @@ const Container = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   grid-gap: 24px;
   justify-items: center;
-  color: ${(props) => props.$color.font_card_main};
+  color: ${(props) => props.$color.font_card_secondary};
 `;
 
 const CardWrapper = styled.div`
@@ -83,6 +83,7 @@ const InfoTitle = styled.h1`
 const InfoDescrip = styled.p`
   font-size: 12px;
   margin-top: 2px;
+  color: ${(props) => props.$color.font_card_main};
 `;
 
 const InfoSubTitle = styled.h2`
@@ -91,7 +92,7 @@ const InfoSubTitle = styled.h2`
 
 const ActionWrapper = styled(Link)`
   text-decoration: none;
-  color: ${(props) => props.$color.font_card_main};
+  color: ${(props) => props.$color.font_card_secondary};
   border-radius: 50px;
   border: 1px solid #117577;
   display: flex;
@@ -168,21 +169,21 @@ export default function Card({ data, handleDeleteList }) {
             <Body>
               <Div>
                 <InfoTitle>{item.name}</InfoTitle>
-                <InfoDescrip>{item.address}</InfoDescrip>
+                <InfoDescrip $color={theme}>{item.address}</InfoDescrip>
               </Div>
               <Div>
                 <InfoSubTitle>區域</InfoSubTitle>
-                <InfoDescrip>{item.area}</InfoDescrip>
+                <InfoDescrip $color={theme}>{item.area}</InfoDescrip>
               </Div>
               <Div>
                 <InfoSubTitle>費率</InfoSubTitle>
                 <OverflowDiv>
-                  <InfoDescrip>{item.payex}</InfoDescrip>
+                  <InfoDescrip $color={theme}>{item.payex}</InfoDescrip>
                 </OverflowDiv>
               </Div>
               <Div>
                 <InfoSubTitle>營業時間</InfoSubTitle>
-                <InfoDescrip>{item.opening}</InfoDescrip>
+                <InfoDescrip $color={theme}>{item.opening}</InfoDescrip>
               </Div>
               <Div>
                 <ActionWrapper

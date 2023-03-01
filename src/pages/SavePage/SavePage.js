@@ -12,6 +12,7 @@ import {
 } from "../../constants/utils";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { MEDIA_QUERY } from "../../constants/style";
 
 const Empty = styled.h2`
   margin: 66px 0;
@@ -29,6 +30,10 @@ const Action = styled.div`
   display: flex;
   justify-content: end;
   margin-top: 8px;
+  visibility: hidden;
+  ${MEDIA_QUERY} {
+    visibility: visible;
+  }
 `;
 
 const ActionWrapper = styled.div`
