@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 const Container = styled.div`
   margin: 6px 0;
   color: #117577;
-  width: 280px;
+  width: 260px;
   ${MEDIA_QUERY} {
     width: 360px;
   }
