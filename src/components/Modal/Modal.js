@@ -33,9 +33,13 @@ const H1 = styled.h1`
 
 const Action = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   min-width: 160px;
+  margin-right: 10px;
+  ${MEDIA_QUERY} {
+    margin-right: 0;
+  }
 `;
 
 const ActionWrapper = styled(Link)`

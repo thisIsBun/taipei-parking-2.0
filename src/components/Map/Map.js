@@ -84,6 +84,7 @@ export default function Map() {
                         key={park.id}
                         clusterer={clusterer}
                         icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+                        onMouseOut={() => setHoverMarker(null)}
                         onMouseOver={() => setHoverMarker(park)}
                         onClick={() => {
                           setClickMarker(park);
@@ -115,7 +116,7 @@ export default function Map() {
             <InfoWindow
               position={{ lat: hoverMarker.lat, lng: hoverMarker.lng }}
               options={{
-                pixelOffset: new window.google.maps.Size(0, -30),
+                pixelOffset: new window.google.maps.Size(0, -35),
               }}
               onCloseClick={() => setHoverMarker("")}
             >
