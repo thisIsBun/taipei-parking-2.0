@@ -4,8 +4,8 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { MEDIA_QUERY } from "../../constants/style";
 
 const Label = styled.label`
-  width: 70px;
-  min-height: 3.5vh;
+  width: 68px;
+  min-height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@ const Label = styled.label`
   cursor: pointer;
   ${MEDIA_QUERY} {
     width: 90px;
-    min-height: 5vh;
+    min-height: 34px;
     font-size: 12px;
     font-weight: bold;
   }
