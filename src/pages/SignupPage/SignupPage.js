@@ -31,16 +31,18 @@ export default function SignupPage() {
       checkPassword: password,
     }).then((data) => {
       if (data.status === "error") {
-        setIsLoading(false);
-        return setErrorMessage(data.message);
+        setErrorMessage(data.message);
       } else if (data.status === "success") {
         Toast.fire({
           title: "註冊成功，請登入帳號",
         });
-        setIsLoading(false);
         navigator("/login");
       }
-    });
+    }).catch((err) => {
+      setErrorMessage(err.message)
+    }).finally(() => {
+       setIsLoading(false);
+    })
   };
 
   return (

@@ -12,7 +12,8 @@ import { Link } from "react-router-dom";
 const Container = styled.div`
   margin: 6px 0;
   color: #117577;
-  width: 260px;
+  width: 256px;
+  padding-right: 6px;
   ${MEDIA_QUERY} {
     width: 360px;
   }
@@ -29,16 +30,17 @@ const Header = styled.div`
 const H1 = styled.h1`
   font-size: 14px;
   line-height: 1.1;
+  margin-right: 10px;
 `;
 
 const Action = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
-  min-width: 160px;
-  margin-right: 10px;
+  width: 80px;
   ${MEDIA_QUERY} {
     margin-right: 0;
+    min-width: 160px;
   }
 `;
 

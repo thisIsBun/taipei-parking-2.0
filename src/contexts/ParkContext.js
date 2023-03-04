@@ -10,58 +10,56 @@ export const ParkProvider = ({ children }) => {
   const [updateTime, setUpdateTime] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  async function fetchData() {
+    const [parkRes, parkAvlRes] = await Promise.all([getPark(), getParkAvl()]);
+    const rawData = parkRes.data.park;
+    const rawAvlData = parkAvlRes.data.park;
+    const rawAvlTime = parkAvlRes.data.UPDATETIME;
+    const newData = rawData
+      .map((item) => {
+        const avlItem = rawAvlData.find((avl) => avl.id === item.id);
+
+        if (!avlItem) return null;
+        const {
+          name,
+          totalcar,
+          payex,
+          tel,
+          serviceTime,
+          tw97x,
+          tw97y,
+          area,
+          address,
+        } = item;
+        const { lat, lng } = twd97_to_latlng(tw97x, tw97y);
+        const opening =
+          serviceTime === "00:00:00~23:59:59" ? "24小時" : serviceTime;
+        const { id, availablecar, ChargeStation } = avlItem;
+        const hasChargingStation = ChargeStation === undefined ? "無" : "有";
+        if (availablecar <= 0) return null;
+
+        return {
+          id,
+          name,
+          availablecar,
+          totalcar,
+          payex,
+          address,
+          area,
+          hasChargingStation,
+          tel,
+          opening,
+          lat,
+          lng,
+        };
+      })
+      .filter((item) => item !== null);
+    setSortData(newData);
+    setUpdateTime(rawAvlTime);
+    setIsLoading(false);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const [parkRes, parkAvlRes] = await Promise.all([
-        getPark(),
-        getParkAvl(),
-      ]);
-      const rawData = parkRes.data.park;
-      const rawAvlData = parkAvlRes.data.park;
-      const rawAvlTime = parkAvlRes.data.UPDATETIME;
-      const newData = rawData
-        .map((item) => {
-          const avlItem = rawAvlData.find((avl) => avl.id === item.id);
-
-          if (!avlItem) return null;
-          const {
-            name,
-            totalcar,
-            payex,
-            tel,
-            serviceTime,
-            tw97x,
-            tw97y,
-            area,
-            address,
-          } = item;
-          const { lat, lng } = twd97_to_latlng(tw97x, tw97y);
-          const opening =
-            serviceTime === "00:00:00~23:59:59" ? "24小時" : serviceTime;
-          const { id, availablecar, ChargeStation } = avlItem;
-          const hasChargingStation = ChargeStation === undefined ? "無" : "有";
-          if (availablecar <= 0) return null;
-
-          return {
-            id,
-            name,
-            availablecar,
-            totalcar,
-            payex,
-            address,
-            area,
-            hasChargingStation,
-            tel,
-            opening,
-            lat,
-            lng,
-          };
-        })
-        .filter((item) => item !== null);
-      setSortData(newData);
-      setUpdateTime(rawAvlTime);
-      setIsLoading(false);
-    };
     fetchData();
     setIsLoading(true);
   }, []);

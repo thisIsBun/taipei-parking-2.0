@@ -44,10 +44,10 @@ const SwitchDark = styled.div`
 
 const SwitchCircle = styled.div`
   position: absolute;
-  width: 48%;
-  height: 100%;
-  top: 0;
-  right: 0;
+  width: calc(50% - 2px);
+  top: 2px;
+  bottom: 2px;
+  right: 2px;
   transition: right 0.25s ease-out;
   background: ${(props) => props.$color.background_active};
   border-radius: 50px;

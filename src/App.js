@@ -1,20 +1,20 @@
-import Navbar from "../Navbar/Navbar";
-import HomePage from "../../pages/HomePage/HomePage";
-import SavePage from "../../pages/SavePage";
-import LoginPage from "../../pages/LoginPage";
-import SignupPage from "../../pages/SignupPage";
-import Footer from "../Footer";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import Navbar from "./components/Navbar/Navbar";
+import HomePage from "./pages/HomePage/HomePage";
+import SavePage from "./pages/SavePage";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import Footer from "./components/Footer";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import styled from "styled-components";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
-import { ThemeContext } from "../../contexts/ThemeContext";
+import { ThemeContext } from "./contexts/ThemeContext";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
-import { AuthContext } from "../../contexts/AuthContext";
-import { getAuthToken } from "../../constants/utils";
-import { getUser } from "../../apis/WebAPI";
+import { AuthContext } from "./contexts/AuthContext";
+import { getAuthToken } from "./constants/utils";
+import { getUser } from "./apis/WebAPI";
 
 library.add(fas, far);
 

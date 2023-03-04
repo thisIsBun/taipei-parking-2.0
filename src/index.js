@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./components/App";
+import App from "./App";
 import { ThemeProvider } from "./contexts/ThemeContext"
 import { ParkProvider } from "./contexts/ParkContext";
 

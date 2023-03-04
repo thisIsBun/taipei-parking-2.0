@@ -29,22 +29,20 @@ export default function LoginPage() {
     login(account, password)
       .then((data) => {
         if (data.status === "error") {
-          setIsLoading(false);
-          return setErrorMessage(data.message);
+          setErrorMessage(data.message);
         } else if (data.status === "success") {
           Toast.fire({
             title: "登入成功",
           });
-          setIsLoading(false);
           setAuthToken(data.data.token);
           setUser(data.data.user.id);
           navigator("/");
         }
       })
       .catch((err) => {
-        setIsLoading(false);
-        return setErrorMessage(err.message);
-      });
+        setErrorMessage(err.message);
+      })
+      .finally(() => setIsLoading(false));
   };
   return (
     <Container>
