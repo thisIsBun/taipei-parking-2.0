@@ -15,10 +15,10 @@ import Modal from "../Modal";
 import Locator from "../Locator";
 
 export default function Map() {
-  const [location, setLocation] = useState();
+  const center = useMemo(() => ({ lat: 25.0336752, lng: 121.5648831 }), []);
+  const [location, setLocation] = useState(center);
   const { theme } = useContext(ThemeContext);
   const { sortData } = useContext(ParkContext);
-  const center = useMemo(() => ({ lat: 25.0336752, lng: 121.5648831 }), []);
   const options = useMemo(
     () => ({
       streetViewControl: false,
