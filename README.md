@@ -12,6 +12,7 @@
   * [地圖頁面](#地圖頁面)
   * [停車場標記](#停車場標記)
   * [停車場導航](#停車場導航)
+  * [儲存頁面](#儲存頁面)
 
 ## 專案簡介
 **收錄台北市停車場即時資訊，快速搜尋空車位**
@@ -174,11 +175,18 @@ let me intoduce you 車位即時查，幫你節省找停車場的時間
 
 * * *
 ### 停車場導航
+>  點擊路線後，可自動開啟 Google地圖導航
+
+![Google map nevigate demo](https://user-images.githubusercontent.com/106903594/223115778-57a9613d-7c9b-4fde-bd31-62e8dd724e90.gif)
 
 * * *
 ### 儲存頁面 
 
 #### Card view
+> 以看板的方式，呈現各個停車場車位資訊
+
+![card view demo](https://user-images.githubusercontent.com/106903594/223118374-c22855d1-fb2b-4b88-b3ed-b368053f7894.gif)
+
 #### Table view
 
 * * *
