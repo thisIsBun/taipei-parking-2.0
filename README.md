@@ -6,9 +6,8 @@
 * [專案簡介](#專案簡介)
 * [功能介紹](#功能介紹)
 * [開發工具](#開發工具)
+* [專案架構](#專案架構)
 * [如何執行](#如何執行)
-* [專案結構](#專案結構)
-* [目錄結構說明](#目錄結構說明)
 * [專案 DEMO](#專案-demo)
 
 ## 專案簡介
@@ -58,16 +57,80 @@ let me intoduce you 車位即時查，幫你節省找停車場的時間
   - styled-components 5.3.6
 
 - 專案使用套件：
-  - @react-google-maps/api： 使用 google map api功能(map, marker, circle, markerCluster, infoWindow)
-  - use-places-autocomplete、@reach/combobox：建立 searchbox及 auto complete功能
-  - react-table：建立表格
-  - fortawesome：網頁 icon
+  - @react-google-maps/api
+  - use-places-autocomplete
+  - @reach/combobox
+  - react-table
+  - fortawesome
+  - sweetalert2
 
 - 程式碼優化工具：
-  - eslint
   - PropTypes
+  - eslint
   - prettier
+
+## 專案架構
+```
+├── README.md
+├── package-lock.json
+├── package.json
+└── src
+    ├── App.js
+    ├── apis
+    │   └── WebAPI.js
+    ├── assets
+    │   └── logo.png
+    ├── components
+    │   ├── Card
+    │   ├── Footer
+    │   ├── Form
+    │   ├── Loader
+    │   ├── Locator
+    │   ├── Map
+    │   ├── Modal
+    │   ├── Navbar
+    │   ├── ProtectedRoute
+    │   ├── Search
+    │   ├── Switch
+    │   ├── Table
+    │   └── Tooltip
+    ├── constants
+    │   ├── style.js
+    │   └── utils.js
+    ├── contexts
+    │   ├── AuthContext.js
+    │   ├── ParkContext.js
+    │   └── ThemeContext.js
+    ├── index.css
+    ├── index.js
+    ├── pages
+    │   ├── HomePage
+    │   │   ├── HomePage.js
+    │   │   └── index.js
+    │   ├── LoginPage
+    │   │   ├── LoginPage.js
+    │   │   └── index.js
+    │   ├── SavePage
+    │   │   ├── SavePage.js
+    │   │   └── index.js
+    │   └── SignupPage
+    │       ├── SignupPage.js
+    │       └── index.js
+    ├── reportWebVitals.js
+    └── setupTests.js
+```
 
 ## 如何執行
 請先確認環境已經有安裝 Node.js，專案是使用 v16.16.0開發
-1. 
+
+1. `npm install`
+安裝此專案所需的第三方套件
+
+2. `在 .env.local輸入 Google Map API keys`
+  - 路徑：src > constants > .env.local
+  - 如何取得 api keys：[參考 google developers說明](https://developers.google.com/maps/documentation/embed/get-api-key?hl=zh-tw)
+
+3. `npm run start`
+在 local啟動專案
+
+> __使用者 account: user1 , password: 12345678__
