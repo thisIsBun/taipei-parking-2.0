@@ -11,6 +11,7 @@
 * [專案 demo](#專案-demo)
   * [地圖頁面](#地圖頁面)
   * [停車場標記](#停車場標記)
+  * [停車場導航](#停車場導航)
 
 ## 專案簡介
 **收錄台北市停車場即時資訊，快速搜尋空車位**
@@ -142,36 +143,46 @@ let me intoduce you 車位即時查，幫你節省找停車場的時間
 ### 地圖頁面
 
 #### 搜尋目的地
-系統會根據輸入的關鍵字，自動比對符合的目的地
+> 系統會根據輸入的關鍵字，列出符合關鍵字的選項
+
 ![Search demo](https://user-images.githubusercontent.com/106903594/223045025-b1d0fd90-5156-4077-a21e-dc9b9b6d4433.gif)
 
 #### 定位目前位置
-點擊「定位」按鈕，系統就能取得目前位置
+> 點擊「定位」按鈕，系統就能取得目前裝置位置
+
 ![Locator demo](https://user-images.githubusercontent.com/106903594/223048593-f308ab96-54f4-4fa7-b0c0-bedd6f1ff066.gif)
 
 #### 用 Circle判斷停車場距離
-100m(綠)/250m(黃)/500m(紅)的圓圈，輔助判斷停車場與目的地的距離
+> 100m(綠)/250m(黃)/500m(紅)的圓圈，輔助判斷停車場與目的地的距離
 <img width="1345" alt="image" src="https://user-images.githubusercontent.com/106903594/223068210-e02b39ec-6eaa-4782-b881-e6b058613d92.png">
 
 * * *
 ### 停車場標記
 
 #### Marker Clusterer 集合效果
-可點擊 zoom in/out按鈕，地圖會自動集合 marker，避免過多 marker聚集在一起
+> 可點擊 zoom in/out按鈕，地圖會自動集合 marker，避免過多 marker聚集在一起
+
 ![Marker Clusterer demo](https://user-images.githubusercontent.com/106903594/223065986-56c6e589-2a0c-49f8-91e6-408d5056ec20.gif)
 
 #### 即時資訊
-hover時可顯示空位及是否有充電樁資訊、點擊會有詳細資訊
+> hover時可顯示空位及是否有充電樁資訊、點擊會有停車場詳細資訊
 
-可從右下角知道資料更新時間
+![Real-time marker info demo](https://user-images.githubusercontent.com/106903594/223111962-84ae2d94-c57a-4c20-8548-249d90b0cab5.gif)
+
+> 可從右下角知道資料更新時間
+<img width="1404" alt="image" src="https://user-images.githubusercontent.com/106903594/223113135-649fb401-3e49-484d-bbd3-ece35b8e491c.png">
 
 * * *
 ### 停車場導航
+
 * * *
-### 儲存頁面 Card view
-* * *
-### 儲存頁面 Table view
+### 儲存頁面 
+
+#### Card view
+#### Table view
+
 * * *
 ### 切換 Dark/Light mode
+
 * * *
 ### RWD設計
