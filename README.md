@@ -13,6 +13,7 @@
   * [停車場標記](#停車場標記)
   * [停車場導航](#停車場導航)
   * [儲存頁面](#儲存頁面)
+  * [深色模式](#深色模式)
 
 ## 專案簡介
 **收錄台北市停車場即時資訊，快速搜尋空車位**
@@ -49,7 +50,7 @@ let me intoduce you 車位即時查，幫你節省找停車場的時間
 
 - 登入可使用的功能：
   - 儲存頁面，提供兩種檢視模式：
-    - Card view：視覺化的看板方式，呈現各個停車場車位資訊
+    - Card view：以卡片的方式，加強停車場資訊視覺化的
     - Table view：以表格方式呈現，欄位提供排序功能，方便快速檢視資料
 
 > __可切換 Dark/Light mode及提供 RWD響應式設計，希望提供使用者最舒服的瀏覽方式__
@@ -183,14 +184,20 @@ let me intoduce you 車位即時查，幫你節省找停車場的時間
 ### 儲存頁面 
 
 #### Card view
-> 以看板的方式，呈現各個停車場車位資訊
+> 以卡片的方式呈現每個停車場，用視覺化的方式呈現即時空車位及充電樁資訊
 
 ![card view demo](https://user-images.githubusercontent.com/106903594/223118374-c22855d1-fb2b-4b88-b3ed-b368053f7894.gif)
 
 #### Table view
+> 以表格的方式呈現每個停車場，欄位可使用排序功能，方便快速檢視資料
+
+![table view demo](https://user-images.githubusercontent.com/106903594/223155334-7bc947e9-bde7-474d-aaed-d461987e01ec.gif)
 
 * * *
-### 切換 Dark/Light mode
+### 深色模式
+> 提供 Dark/Light切換鈕，讓你有舒適的瀏覽方式
+
+![dark/light mode demo](https://user-images.githubusercontent.com/106903594/223161759-5b1f7097-51c5-45b0-8ab8-eec78c64ed6c.gif)
 
 * * *
 ### RWD設計
