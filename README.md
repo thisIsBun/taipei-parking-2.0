@@ -40,7 +40,7 @@ let me intoduce you 車位即時查，幫你節省找停車場的時間
     - 地點搜尋：只要輸入關鍵字，系統會自動比對並且提供符合的地址選項
     - 定位功能：一鍵自動定位目前位置
     - Circle功能：以目的地或目前位置為中心，畫出 100m/250m/500m的範圍，協助判斷停車場跟目的地的距離
-    - 停車場資訊，結合台北市資料大平台，顯示停車場的即時資訊：
+    - 停車場即時資訊：
       - hover會顯示停車場的「即時空車位」、「是否提供充電樁」
       - 點擊則可看到費率、營業時間等詳細資訊
     - 停車場導航：一鍵開啟 Google地圖導航
@@ -56,12 +56,12 @@ let me intoduce you 車位即時查，幫你節省找停車場的時間
 > __可切換 Dark/Light mode及提供 RWD響應式設計，希望提供使用者最舒服的瀏覽方式__
 
 ## 開發工具
-- 前端語言：
+- 前端語言
   - react v17.0.1
   - react-router v6.8.0
   - styled-components 5.3.6
 
-- 專案使用套件：
+- 使用套件
   - @react-google-maps/api
   - use-places-autocomplete
   - @reach/combobox
@@ -69,10 +69,23 @@ let me intoduce you 車位即時查，幫你節省找停車場的時間
   - fortawesome
   - sweetalert2
 
-- 程式碼優化工具：
+- 程式碼優化工具
   - PropTypes
   - eslint
   - prettier
+
+- API reference
+  - Google Map：
+    - Maps JavaScript API
+    - Places API
+    - Geocoding API
+  - 政府資料開放平臺([網址](https://data.gov.tw/dataset/128435))：
+    - TCMSV_alldesc.json
+    - TCMSV_allavailable.json
+  - 使用者相關
+    - login
+    - signup
+    - currentUser
 
 ## 專案結構
 ```
@@ -163,8 +176,8 @@ let me intoduce you 車位即時查，幫你節省找停車場的時間
 
 #### Marker Clusterer 集合效果
 > 可點擊 zoom in/out按鈕，地圖會自動集合 marker，避免過多 marker聚集在一起
-
-![Marker Clusterer demo](https://user-images.githubusercontent.com/106903594/223065986-56c6e589-2a0c-49f8-91e6-408d5056ec20.gif)
+> 
+![Marker Clusterer demo](https://user-images.githubusercontent.com/106903594/223284868-4b917bac-60ce-426f-92b0-27d7adf34940.gif)
 
 #### 即時資訊
 > hover時可顯示空位及是否有充電樁資訊、點擊會有停車場詳細資訊
@@ -201,3 +214,9 @@ let me intoduce you 車位即時查，幫你節省找停車場的時間
 
 * * *
 ### RWD設計
+> 不論用手機或桌機，都方便瀏覽網頁
+<img width="1195" alt="image" src="https://user-images.githubusercontent.com/106903594/223287725-262a767f-04b2-405f-8eae-ef5bff2d8c0d.png">
+<img width="1194" alt="image" src="https://user-images.githubusercontent.com/106903594/223287533-c58995a3-1ac5-4805-8913-4bb006d66d64.png">
+
+
+
