@@ -18,11 +18,11 @@
 ## 專案簡介
 **收錄台北市停車場即時資訊，快速搜尋空車位**
 ```
-你要開車進台北市嗎？
+要開車進台北市嗎？
 在煩惱要去哪裡停車嗎？
 想知道哪裡有空位、怎麼收費嗎？
 
-let me intoduce you 車位即時查，幫你節省找停車場的時間
+let me intoduce you 車位即時查，幫你節省找停車位的時間
 
 可預先查詢目的地周邊的停車場
 - 先搜尋目的地
@@ -210,7 +210,8 @@ let me intoduce you 車位即時查，幫你節省找停車場的時間
 ### 深色模式
 > 提供 Dark/Light切換鈕，讓你有舒適的瀏覽方式
 
-![dark/light mode demo](https://user-images.githubusercontent.com/106903594/223161759-5b1f7097-51c5-45b0-8ab8-eec78c64ed6c.gif)
+![dark/light mode demo](https://user-images.githubusercontent.com/106903594/223291344-e9871131-8a73-4e68-aa1c-474c040ecfe0.gif)
+
 
 * * *
 ### RWD設計
