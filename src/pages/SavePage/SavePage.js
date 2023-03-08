@@ -118,8 +118,12 @@ export default function SavePage() {
 
   const handleViewChange = () => {
     setCardView(!cardView);
-    window.gtag("event", "select_content", {
-      content_type: "switchView",
+
+    const gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+    gtag("event", "switch_save_view", {
+      content_type: "switchSaveView",
     });
   };
 

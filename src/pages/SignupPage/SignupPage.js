@@ -23,11 +23,14 @@ export default function SignupPage() {
   const handleSignup = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    window.gtag("event", "sign_up", {
+
+    const gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+    gtag("event", "sign_up", {
       method: "Google",
     });
-    
+
     signup({
       account,
       password,

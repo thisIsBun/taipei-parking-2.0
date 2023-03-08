@@ -37,7 +37,10 @@ export default function Map() {
 
   const handleLocator = () => {
     setIsLoading(true);
-    window.gtag("event", "select_content", {
+    const gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+    gtag("event", "locate_by_device", {
       content_type: "locateByDevice",
     });
     navigator.geolocation.getCurrentPosition((position) => {

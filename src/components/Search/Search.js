@@ -45,7 +45,10 @@ export default function Search({ setLocation }) {
           value={value}
           onChange={(e) => {
             setValue(e.target.value);
-            window.gtag("event", "search", {
+            const gtag = function () {
+              window.dataLayer.push(arguments);
+            };
+            gtag("event", "search", {
               search_term: value,
             });
           }}

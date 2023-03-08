@@ -275,7 +275,10 @@ export const ThemeProvider = ({ children }) => {
   const [dark, setDark] = useState(true);
   const toggleTheme = () => {
     setDark(!dark);
-    window.gtag("event", "select_content", {
+    const gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+    gtag("event", "switch_theme", {
       content_type: "switchTheme",
     });
   };

@@ -27,10 +27,13 @@ export default function LoginPage() {
     e.preventDefault();
     setIsLoading(true);
 
-    window.gtag("event", "login", {
+    const gtag = function () {
+      window.dataLayer.push(arguments);
+    };
+    gtag("event", "login", {
       method: "Google",
     });
-    
+
     login(account, password)
       .then((data) => {
         if (data.status === "error") {
