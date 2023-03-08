@@ -5,6 +5,7 @@ import Form from "../../components/Form";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../constants/style";
 import { Toast } from "../../constants/utils";
+import {signupGtag} from "../../constants/gtag"
 
 const Container = styled.div`
   ${MEDIA_QUERY} {
@@ -23,26 +24,30 @@ export default function SignupPage() {
   const handleSignup = (e) => {
     e.preventDefault();
     setIsLoading(true);
+    signupGtag()
     signup({
       account,
       password,
       name: "bun",
       email: `${Math.random()}@gmail.com`,
       checkPassword: password,
-    }).then((data) => {
-      if (data.status === "error") {
-        setErrorMessage(data.message);
-      } else if (data.status === "success") {
-        Toast.fire({
-          title: "註冊成功，請登入帳號",
-        });
-        navigator("/login");
-      }
-    }).catch((err) => {
-      setErrorMessage(err.message)
-    }).finally(() => {
-       setIsLoading(false);
     })
+      .then((data) => {
+        if (data.status === "error") {
+          setErrorMessage(data.message);
+        } else if (data.status === "success") {
+          Toast.fire({
+            title: "註冊成功，請登入帳號",
+          });
+          navigator("/login");
+        }
+      })
+      .catch((err) => {
+        setErrorMessage(err.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (

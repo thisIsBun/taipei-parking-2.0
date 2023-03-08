@@ -13,6 +13,7 @@ import Search from "../Search/";
 import Tooltip from "../Tooltip/Tooltip";
 import Modal from "../Modal";
 import Locator from "../Locator";
+import { clickGtag } from "../../constants/gtag";
 
 export default function Map() {
   const center = useMemo(() => ({ lat: 25.0336752, lng: 121.5648831 }), []);
@@ -37,6 +38,7 @@ export default function Map() {
 
   const handleLocator = () => {
     setIsLoading(true);
+    clickGtag("locateByDevice")
     navigator.geolocation.getCurrentPosition((position) => {
       const {
         coords: { latitude, longitude },
