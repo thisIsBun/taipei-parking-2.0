@@ -7,6 +7,7 @@ import Form from "../../components/Form";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../constants/style";
 import { Toast } from "../../constants/utils";
+import { gtag } from "../../constants/utils";
 
 const Container = styled.div`
   ${MEDIA_QUERY} {
@@ -27,9 +28,6 @@ export default function LoginPage() {
     e.preventDefault();
     setIsLoading(true);
 
-    const gtag = function () {
-      window.dataLayer.push(arguments);
-    };
     gtag("event", "login", {
       method: "Google",
     });

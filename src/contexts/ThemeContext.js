@@ -1,5 +1,6 @@
 import { useState, createContext } from "react";
 import PropTypes from "prop-types";
+import { gtag } from "../constants/utils";
 
 const themes = {
   light: {
@@ -275,9 +276,6 @@ export const ThemeProvider = ({ children }) => {
   const [dark, setDark] = useState(true);
   const toggleTheme = () => {
     setDark(!dark);
-    const gtag = function () {
-      window.dataLayer.push(arguments);
-    };
     gtag("event", "switch_theme", {
       content_type: "switchTheme",
     });

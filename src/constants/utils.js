@@ -140,3 +140,7 @@ export const Toast = Swal.mixin({
   timer: 3000,
   icon: "success",
 });
+
+export const gtag = function () {
+  window.dataLayer.push(arguments);
+};

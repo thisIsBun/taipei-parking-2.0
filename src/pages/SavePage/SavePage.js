@@ -13,6 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { MEDIA_QUERY } from "../../constants/style";
+import { gtag } from "../../constants/utils";
 
 const Empty = styled.h2`
   margin: 66px 0;
@@ -118,10 +119,6 @@ export default function SavePage() {
 
   const handleViewChange = () => {
     setCardView(!cardView);
-
-    const gtag = function () {
-      window.dataLayer.push(arguments);
-    };
     gtag("event", "switch_save_view", {
       content_type: "switchSaveView",
     });

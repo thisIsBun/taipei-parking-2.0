@@ -14,6 +14,7 @@ import PropTypes from "prop-types";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { gtag } from "../../constants/utils";
 
 export default function Search({ setLocation }) {
   const { theme } = useContext(ThemeContext);
@@ -45,9 +46,6 @@ export default function Search({ setLocation }) {
           value={value}
           onChange={(e) => {
             setValue(e.target.value);
-            const gtag = function () {
-              window.dataLayer.push(arguments);
-            };
             gtag("event", "search", {
               search_term: value,
             });
