@@ -14,6 +14,7 @@
   * [停車場導航](#停車場導航)
   * [儲存頁面](#儲存頁面)
   * [深色模式](#深色模式)
+  * [響應式設計](#響應式設計)
 
 ## 專案簡介
 **收錄台北市停車場即時資訊，快速搜尋空車位**
@@ -212,9 +213,8 @@ let me introduce you 車位即時查，幫你節省找停車位的時間
 
 ![dark/light mode demo](https://user-images.githubusercontent.com/106903594/223291344-e9871131-8a73-4e68-aa1c-474c040ecfe0.gif)
 
-
 * * *
-### RWD設計
+### 響應式設計
 > 不論用手機或桌機，都方便瀏覽網頁
 <img width="1193" alt="image" src="https://user-images.githubusercontent.com/106903594/223442228-0ea0020a-15b7-47c6-a0cf-524ee71c93e4.png">
 <img width="1193" alt="image" src="https://user-images.githubusercontent.com/106903594/223442366-2e388e65-7baf-45d9-83a1-8771c3d80c46.png">
