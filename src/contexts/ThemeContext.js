@@ -1,6 +1,5 @@
 import { useState, createContext } from "react";
 import PropTypes from "prop-types";
-import { clickGtag } from "../constants/gtag";
 
 const themes = {
   light: {
@@ -276,7 +275,9 @@ export const ThemeProvider = ({ children }) => {
   const [dark, setDark] = useState(true);
   const toggleTheme = () => {
     setDark(!dark);
-    clickGtag("switchTheme")
+    window.gtag("event", "select_content", {
+      content_type: "switchTheme",
+    });
   };
   const theme = dark ? themes.dark : themes.light;
   const defaultValue = {

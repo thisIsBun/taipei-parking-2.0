@@ -5,7 +5,6 @@ import Form from "../../components/Form";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../constants/style";
 import { Toast } from "../../constants/utils";
-import {signupGtag} from "../../constants/gtag"
 
 const Container = styled.div`
   ${MEDIA_QUERY} {
@@ -24,7 +23,11 @@ export default function SignupPage() {
   const handleSignup = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    signupGtag()
+    
+    window.gtag("event", "sign_up", {
+      method: "Google",
+    });
+    
     signup({
       account,
       password,

@@ -13,7 +13,6 @@ import {
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { MEDIA_QUERY } from "../../constants/style";
-import { clickGtag } from "../../constants/gtag";
 
 const Empty = styled.h2`
   margin: 66px 0;
@@ -119,7 +118,9 @@ export default function SavePage() {
 
   const handleViewChange = () => {
     setCardView(!cardView);
-    clickGtag("switchView")
+    window.gtag("event", "select_content", {
+      content_type: "switchView",
+    });
   };
 
   const handleDeleteList = (id) => {

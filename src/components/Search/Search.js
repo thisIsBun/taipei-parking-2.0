@@ -14,7 +14,6 @@ import PropTypes from "prop-types";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { searchGtag } from "../../constants/gtag";
 
 export default function Search({ setLocation }) {
   const { theme } = useContext(ThemeContext);
@@ -46,7 +45,9 @@ export default function Search({ setLocation }) {
           value={value}
           onChange={(e) => {
             setValue(e.target.value);
-            searchGtag(value)
+            window.gtag("event", "search", {
+              search_term: value,
+            });
           }}
           className="combobox-input"
           style={{
