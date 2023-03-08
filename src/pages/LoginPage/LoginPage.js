@@ -26,6 +26,11 @@ export default function LoginPage() {
   const handleLogin = (e) => {
     e.preventDefault();
     setIsLoading(true);
+
+    window.gtag("event", "login", {
+      method: "Google",
+    });
+
     login(account, password)
       .then((data) => {
         if (data.status === "error") {
