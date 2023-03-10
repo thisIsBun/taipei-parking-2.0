@@ -1,5 +1,7 @@
 # 車位即時查
-連結：[taipei-parking-2.0](https://thisisbun.github.io/taipei-parking-2.0/#/)
+連結：[taipei-parking-2.0](https://thisisbun.github.io/taipei-parking-2.0/#/) 
+> 測試帳密 Account: `user1`, Password: `12345678`
+
 ![project_main_demogif](https://user-images.githubusercontent.com/106903594/222969992-d42dece4-c41d-4c43-abb8-e94f3e0042e9.gif)
 
 ## 目錄
@@ -152,7 +154,6 @@ let me introduce you 車位即時查，幫你節省找停車位的時間
 3. `npm run start`
 在 local啟動專案
 
-> __測試帳號 account: user1 , password: 12345678__
 
 ## 專案 demo
 
