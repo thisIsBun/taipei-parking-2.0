@@ -42,12 +42,13 @@ const LeftTitle = styled.p`
 
 const RightTitle = styled.p``;
 
-const Bun = styled(Link)`
+const GitHub = styled(Link)`
   text-decoration: none;
   color: ${(props) => props.$color.font_main};
   background: ${props => props.$color.background_hover};
   border-radius: 6px;
   padding: 3px 8px;
+  margin-left: 8px;
 `;
 
 export default function Footer() {
@@ -57,15 +58,14 @@ export default function Footer() {
     <FooterContainer $color={theme}>
       <Wrapper>
         <LeftTitle>
-          Website are designed and built by{" "}
-          <Bun
-            to="https://www.linkedin.com/in/shu-yin-chen-2a4411138/"
+          Website are designed and built by Bun &copy; 2023.
+          <GitHub
+            to="https://github.com/thisIsBun/taipei-parking-2.0"
             target="_blank"
             $color={theme}
           >
-            Bun
-          </Bun>{" "}
-          &copy; 2023.
+            GitHub
+          </GitHub>{" "}
         </LeftTitle>
         <RightTitle>資料更新時間：{updateTime}</RightTitle>
       </Wrapper>
