@@ -24,7 +24,11 @@ export default function Search({ setLocation }) {
     setValue,
     suggestions: { status, data },
     clearSuggestions,
-  } = usePlacesAutocomplete();
+  } = usePlacesAutocomplete({
+    requestOptions: {
+      componentRestrictions: { country: "tw" },
+    },
+  });
 
   const handleSelect = async (value) => {
     setValue(value, false);
