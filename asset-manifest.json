@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/taipei-parking-2.0/static/css/main.26eb68ae.chunk.css",
-    "main.js": "/taipei-parking-2.0/static/js/main.cdb7ec40.chunk.js",
-    "main.js.map": "/taipei-parking-2.0/static/js/main.cdb7ec40.chunk.js.map",
+    "main.js": "/taipei-parking-2.0/static/js/main.27c800b9.chunk.js",
+    "main.js.map": "/taipei-parking-2.0/static/js/main.27c800b9.chunk.js.map",
     "runtime-main.js": "/taipei-parking-2.0/static/js/runtime-main.1f406cd2.js",
     "runtime-main.js.map": "/taipei-parking-2.0/static/js/runtime-main.1f406cd2.js.map",
     "static/css/2.142bee5e.chunk.css": "/taipei-parking-2.0/static/css/2.142bee5e.chunk.css",
-    "static/js/2.6633683f.chunk.js": "/taipei-parking-2.0/static/js/2.6633683f.chunk.js",
-    "static/js/2.6633683f.chunk.js.map": "/taipei-parking-2.0/static/js/2.6633683f.chunk.js.map",
+    "static/js/2.31652e78.chunk.js": "/taipei-parking-2.0/static/js/2.31652e78.chunk.js",
+    "static/js/2.31652e78.chunk.js.map": "/taipei-parking-2.0/static/js/2.31652e78.chunk.js.map",
     "index.html": "/taipei-parking-2.0/index.html",
     "static/css/2.142bee5e.chunk.css.map": "/taipei-parking-2.0/static/css/2.142bee5e.chunk.css.map",
     "static/css/main.26eb68ae.chunk.css.map": "/taipei-parking-2.0/static/css/main.26eb68ae.chunk.css.map",
-    "static/js/2.6633683f.chunk.js.LICENSE.txt": "/taipei-parking-2.0/static/js/2.6633683f.chunk.js.LICENSE.txt",
+    "static/js/2.31652e78.chunk.js.LICENSE.txt": "/taipei-parking-2.0/static/js/2.31652e78.chunk.js.LICENSE.txt",
     "static/media/logo.202a9f03.png": "/taipei-parking-2.0/static/media/logo.202a9f03.png"
   },
   "entrypoints": [
     "static/js/runtime-main.1f406cd2.js",
     "static/css/2.142bee5e.chunk.css",
-    "static/js/2.6633683f.chunk.js",
+    "static/js/2.31652e78.chunk.js",
     "static/css/main.26eb68ae.chunk.css",
-    "static/js/main.cdb7ec40.chunk.js"
+    "static/js/main.27c800b9.chunk.js"
   ]
 }
