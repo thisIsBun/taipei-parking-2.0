@@ -13,8 +13,10 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { AuthContext } from "./contexts/AuthContext";
+import { auth } from "./constants/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import { getAuthToken } from "./constants/utils";
-import { getUser } from "./apis/WebAPI";
+
 
 library.add(fas, far);
 
@@ -26,21 +28,18 @@ const Container = styled.div`
 
 function App() {
   const { theme } = useContext(ThemeContext);
-  const [user, setUser] = useState(-1);
+  const [user, setUser] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (getAuthToken()) {
-      setIsLoading(true);
-      getUser().then((data) => {
-        if (data.status !== "error") {
-          setUser(data.id);
-          setIsLoading(false);
-        } else {
-          setIsLoading(false);
-        }
-      });
-    }
+    const localUid = getAuthToken();
+    setIsLoading(true);
+    onAuthStateChanged(auth, (user) => {
+      if (user.uid === localUid) {
+        setUser(user.uid);
+      }
+      setIsLoading(false);
+    });
   }, []);
 
   const style = {

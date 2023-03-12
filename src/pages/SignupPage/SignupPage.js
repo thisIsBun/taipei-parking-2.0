@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { signup } from "../../apis/WebAPI";
 import { useNavigate } from "react-router-dom";
 import Form from "../../components/Form";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../constants/style";
 import { Toast } from "../../constants/utils";
 import { gtag } from "../../constants/utils";
+import { auth } from "../../constants/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Container = styled.div`
   ${MEDIA_QUERY} {
@@ -21,37 +22,21 @@ export default function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);
   const navigator = useNavigate();
 
-  const handleSignup = (e) => {
-    e.preventDefault();
+  const handleSignup = async (e) => {
     setIsLoading(true);
-
     gtag("event", "sign_up", {
       method: "Google",
     });
-
-    signup({
-      account,
-      password,
-      name: "bun",
-      email: `${Math.random()}@gmail.com`,
-      checkPassword: password,
-    })
-      .then((data) => {
-        if (data.status === "error") {
-          setErrorMessage(data.message);
-        } else if (data.status === "success") {
-          Toast.fire({
-            title: "註冊成功，請登入帳號",
-          });
-          navigator("/login");
-        }
-      })
-      .catch((err) => {
-        setErrorMessage(err.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
+    try {
+      await createUserWithEmailAndPassword(auth, account, password);
+      Toast.fire({
+        title: "註冊成功，請登入帳號",
       });
+      navigator("/login");
+    } catch (err) {
+      setErrorMessage(err.message);
+      setIsLoading(false);
+    }
   };
 
   return (

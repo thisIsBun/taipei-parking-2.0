@@ -3,17 +3,16 @@ import { MEDIA_QUERY } from "../../constants/style";
 import React, { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import PropTypes from "prop-types";
-import Loader from "../Loader/Loader";
 import { Link, useLocation } from "react-router-dom";
+import Button from "../Button";
 
-const FormContainer = styled.form`
+const Container = styled.div`
   width: 90%;
-  height: 68vh;
-  margin: 24px auto;
+  height: 72%;
+  margin: 5vh auto;
   padding: 48px 29px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   ${MEDIA_QUERY} {
     padding: 48px 48px;
     width: 100%;
@@ -22,14 +21,49 @@ const FormContainer = styled.form`
   }
 `;
 
+const HeaderContainer = styled.div`
+  flex-basis: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const FormContainer = styled.form`
+  flex-grow: 1;
+`;
+
 const FormTitle = styled.h1`
   font-size: 24px;
   margin-bottom: 12px;
 `;
 
+const Span = styled.span`
+  margin: 16px 0;
+  text-align: center;
+  position: relative;
+  &::before,
+  &::after {
+    width: 45%;
+    height: 1px;
+    background: ${(props) => props.$color.font_main};
+    content: "";
+    position: absolute;
+    top: 50%;
+  }
+  &::before {
+    left: 0px;
+  }
+  &::after {
+    right: 0px;
+  }
+`;
+
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  & + & {
+    margin-top: 8px;
+  }
 `;
 
 const Label = styled.label`
@@ -47,25 +81,6 @@ const Input = styled.input`
   &:focus {
     border: 1px solid ${(props) => props.$color.font_main};
     outline: none;
-  }
-`;
-
-const Button = styled.button`
-  width: 100%;
-  font-size: 16px;
-  background: ${(props) => props.$color.background_active};
-  color: ${(props) => props.$color.font_active};
-  padding: 0.7em;
-  border-radius: 50px;
-  border-width: 0px;
-  margin: 6px 0;
-  cursor: pointer;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  &:hover {
-    background: ${(props) => props.$color.button_hover};
   }
 `;
 
@@ -98,77 +113,84 @@ export default function Form({
   setErrorMessage,
   setAccount,
   setPassword,
+  handleGoogleLogin,
 }) {
   const { theme } = useContext(ThemeContext);
   const location = useLocation();
 
   return (
-    <FormContainer
-      $color={theme}
-      onSubmit={(e) => {
-        if (location.pathname === "/login") {
-          handleLogin(e);
-        } else if (location.pathname === "/signup") {
-          handleSignup(e);
-        }
-      }}
-    >
-      <FormTitle>{title}</FormTitle>
-      <FormWrapper>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <Label>Account</Label>
-          {location.pathname === "/login" && (
-            <AccountAction to="/signup" $color={theme}>
-              註冊新帳號？
-            </AccountAction>
-          )}
-          {location.pathname === "/signup" && (
-            <AccountAction to="/login" $color={theme}>
-              登入帳號？
-            </AccountAction>
-          )}
-        </div>
-        <Input
-          $color={theme}
-          value={account}
-          onChange={(e) => {
-            setAccount(e.target.value);
-          }}
-          onFocus={() => {
-            setErrorMessage("");
-          }}
+    <Container $color={theme}>
+      <HeaderContainer>
+        <FormTitle>{title}</FormTitle>
+        <Button
+          btnName="使用 Google帳號登入"
+          handleGoogleLogin={handleGoogleLogin}
         />
-      </FormWrapper>
-      <FormWrapper>
-        <Label>Password</Label>
-        <Input
-          type="password"
-          $color={theme}
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          onFocus={() => {
-            setErrorMessage("");
-          }}
-        />
-      </FormWrapper>
-      <FormWrapper>
-        <Button $color={theme} disabled={isLoading}>
-          {!isLoading && btnName}
-          {isLoading && <Loader />}
-        </Button>
-        {errorMessage && (
-          <ErrorMessage $color={theme}>{errorMessage}</ErrorMessage>
-        )}
-      </FormWrapper>
-    </FormContainer>
+        <Span $color={theme}>或</Span>
+      </HeaderContainer>
+      <FormContainer
+        onSubmit={(e) => {
+          if (location.pathname === "/login") {
+            handleLogin(e);
+          } else if (location.pathname === "/signup") {
+            handleSignup(e);
+          }
+        }}
+      >
+        <FormWrapper>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Label>Email</Label>
+            {location.pathname === "/login" && (
+              <AccountAction to="/signup" $color={theme}>
+                註冊新帳號？
+              </AccountAction>
+            )}
+            {location.pathname === "/signup" && (
+              <AccountAction to="/login" $color={theme}>
+                登入帳號？
+              </AccountAction>
+            )}
+          </div>
+          <Input
+            type="email"
+            $color={theme}
+            value={account}
+            onChange={(e) => {
+              setAccount(e.target.value);
+            }}
+            onFocus={() => {
+              setErrorMessage("");
+            }}
+          />
+        </FormWrapper>
+        <FormWrapper>
+          <Label>Password</Label>
+          <Input
+            type="password"
+            $color={theme}
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            onFocus={() => {
+              setErrorMessage("");
+            }}
+          />
+        </FormWrapper>
+        <FormWrapper>
+          <Button isLoading={isLoading} btnName={btnName} />
+          {errorMessage && (
+            <ErrorMessage $color={theme}>{errorMessage}</ErrorMessage>
+          )}
+        </FormWrapper>
+      </FormContainer>
+    </Container>
   );
 }
 
@@ -184,4 +206,5 @@ Form.propTypes = {
   setErrorMessage: PropTypes.func,
   setAccount: PropTypes.func,
   setPassword: PropTypes.func,
+  handleGoogleLogin: PropTypes.func,
 };

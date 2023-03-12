@@ -170,7 +170,7 @@ export default function Navbar({ isLoading }) {
   };
 
   const handleLogout = () => {
-    setUser(-1);
+    setUser("");
     setAuthToken("");
     Toast.fire({ title: "登出成功" });
   };
@@ -205,38 +205,42 @@ export default function Navbar({ isLoading }) {
         )}
         {!isLoading && (
           <>
-            {user > 0 && (
-              <Nav
-                to="/save"
-                $pathActive={location.pathname === "/save"}
-                $color={theme}
-              >
-                儲存
-              </Nav>
-            )}
-            {user < 0 &&
-              (location.pathname === "/login" || location.pathname === "/") && (
+            {user && (
+              <>
                 <Nav
-                  to="/login"
-                  $pathActive={location.pathname === "/login"}
+                  to="/save"
+                  $pathActive={location.pathname === "/save"}
                   $color={theme}
                 >
-                  登入
+                  儲存
                 </Nav>
-              )}
-            {user < 0 && location.pathname === "/signup" && (
-              <Nav
-                to="/signup"
-                $pathActive={location.pathname === "/signup"}
-                $color={theme}
-              >
-                註冊
-              </Nav>
+                <Nav to="/" $color={theme} onClick={handleLogout}>
+                  登出
+                </Nav>
+              </>
             )}
-            {user > 0 && (
-              <Nav to="/" $color={theme} onClick={handleLogout}>
-                登出
-              </Nav>
+            {!user && (
+              <>
+                {(location.pathname === "/login" ||
+                  location.pathname === "/") && (
+                  <Nav
+                    to="/login"
+                    $pathActive={location.pathname === "/login"}
+                    $color={theme}
+                  >
+                    登入
+                  </Nav>
+                )}
+                {location.pathname === "/signup" && (
+                  <Nav
+                    to="/signup"
+                    $pathActive={location.pathname === "/signup"}
+                    $color={theme}
+                  >
+                    註冊
+                  </Nav>
+                )}
+              </>
             )}
           </>
         )}

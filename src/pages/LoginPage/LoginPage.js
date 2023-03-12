@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { login } from "../../apis/WebAPI";
 import { setAuthToken } from "../../constants/utils";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +7,8 @@ import styled from "styled-components";
 import { MEDIA_QUERY } from "../../constants/style";
 import { Toast } from "../../constants/utils";
 import { gtag } from "../../constants/utils";
+import { auth, googleProvider } from "../../constants/firebase";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 const Container = styled.div`
   ${MEDIA_QUERY} {
@@ -24,32 +25,43 @@ export default function LoginPage() {
   const { setUser } = useContext(AuthContext);
   const navigator = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handleLogin = async () => {
     setIsLoading(true);
+    gtag("event", "login_email", {
+      method: "Google",
+    });
+    try {
+      await signInWithEmailAndPassword(auth, account, password);
+      Toast.fire({
+        title: "登入成功",
+      });
+      setAuthToken(auth.currentUser.uid);
+      setUser(auth.currentUser.uid);
+      navigator("/");
+    } catch (err) {
+      setErrorMessage(err.message);
+      setIsLoading(false);
+    }
+  };
 
-    gtag("event", "login", {
+  const handleGoogleLogin = async () => {
+    gtag("event", "login_google", {
       method: "Google",
     });
 
-    login(account, password)
-      .then((data) => {
-        if (data.status === "error") {
-          setErrorMessage(data.message);
-        } else if (data.status === "success") {
-          Toast.fire({
-            title: "登入成功",
-          });
-          setAuthToken(data.data.token);
-          setUser(data.data.user.id);
-          navigator("/");
-        }
-      })
-      .catch((err) => {
-        setErrorMessage(err.message);
-      })
-      .finally(() => setIsLoading(false));
+    try {
+      await signInWithPopup(auth, googleProvider);
+      Toast.fire({
+        title: "登入成功",
+      });
+      setAuthToken(auth.currentUser.uid);
+      setUser(auth.currentUser.uid);
+      navigator("/");
+    } catch (err) {
+      setErrorMessage(err.message);
+    }
   };
+
   return (
     <Container>
       <Form
@@ -63,6 +75,7 @@ export default function LoginPage() {
         errorMessage={errorMessage}
         setErrorMessage={setErrorMessage}
         isLoading={isLoading}
+        handleGoogleLogin={handleGoogleLogin}
       />
     </Container>
   );

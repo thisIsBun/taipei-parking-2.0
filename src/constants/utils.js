@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-const TOKEN_NAME = "token";
+const TOKEN_NAME = "uid";
 
 export const setAuthToken = (token) => {
   localStorage.setItem(TOKEN_NAME, token);
