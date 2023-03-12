@@ -152,7 +152,8 @@ let me introduce to you "車位即時查"
 
 2. 找到 .env.local檔案，並輸入 API keys(需要 Google Map及 Firebase)
   - 路徑：src > constants > .env.local
-  - 如何取得 api keys：[參考 google developers說明](https://developers.google.com/maps/documentation/embed/get-api-key?hl=zh-tw)
+  - 如何取得 google map api keys：[參考 google developers說明](https://developers.google.com/maps/documentation/embed/get-api-key?hl=zh-tw)
+  - 如何取得 firebase api keys：[參考 firebase documentation說明](https://firebase.google.com/docs/projects/api-keys?hl=zh-tw)
 
 3. `npm run start`
 在 local啟動專案
