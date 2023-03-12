@@ -4,14 +4,13 @@ import PropTypes from "prop-types";
 
 export default function ProtectedRoute({ user, children }) {
   const location = useLocation();
-  if (location.pathname === "/save") {
+  if (user && location.pathname === "/save") {
     return children;
-  } else if (user < 0) {
+  } else {
     return <Navigate to="/" replace />;
   }
-  return children;
 }
 ProtectedRoute.propTypes = {
-  user: PropTypes.number,
+  user: PropTypes.string,
   children: PropTypes.node,
 };

@@ -7,8 +7,8 @@ import styled from "styled-components";
 import { MEDIA_QUERY } from "../../constants/style";
 import { Toast } from "../../constants/utils";
 import { gtag } from "../../constants/utils";
-import { auth, googleProvider } from "../../constants/firebase";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth } from "../../constants/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Container = styled.div`
   ${MEDIA_QUERY} {
@@ -44,24 +44,6 @@ export default function LoginPage() {
     }
   };
 
-  const handleGoogleLogin = async () => {
-    gtag("event", "login_google", {
-      method: "Google",
-    });
-
-    try {
-      await signInWithPopup(auth, googleProvider);
-      Toast.fire({
-        title: "登入成功",
-      });
-      setAuthToken(auth.currentUser.uid);
-      setUser(auth.currentUser.uid);
-      navigator("/");
-    } catch (err) {
-      setErrorMessage(err.message);
-    }
-  };
-
   return (
     <Container>
       <Form
@@ -75,7 +57,6 @@ export default function LoginPage() {
         errorMessage={errorMessage}
         setErrorMessage={setErrorMessage}
         isLoading={isLoading}
-        handleGoogleLogin={handleGoogleLogin}
       />
     </Container>
   );

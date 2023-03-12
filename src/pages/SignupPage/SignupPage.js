@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "../../components/Form";
 import styled from "styled-components";
@@ -7,6 +7,8 @@ import { Toast } from "../../constants/utils";
 import { gtag } from "../../constants/utils";
 import { auth } from "../../constants/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { setAuthToken } from "../../constants/utils";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Container = styled.div`
   ${MEDIA_QUERY} {
@@ -20,6 +22,7 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { setUser } = useContext(AuthContext);
   const navigator = useNavigate();
 
   const handleSignup = async (e) => {
@@ -30,9 +33,11 @@ export default function SignupPage() {
     try {
       await createUserWithEmailAndPassword(auth, account, password);
       Toast.fire({
-        title: "註冊成功，請登入帳號",
+        title: "註冊成功",
       });
-      navigator("/login");
+      setAuthToken(auth.currentUser.uid);
+      setUser(auth.currentUser.uid);
+      navigator("/");
     } catch (err) {
       setErrorMessage(err.message);
       setIsLoading(false);

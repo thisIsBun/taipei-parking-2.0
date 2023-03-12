@@ -3,8 +3,14 @@ import { MEDIA_QUERY } from "../../constants/style";
 import React, { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import PropTypes from "prop-types";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../Button";
+import { gtag } from "../../constants/utils";
+import { auth, googleProvider } from "../../constants/firebase";
+import { signInWithPopup } from "firebase/auth";
+import { Toast } from "../../constants/utils";
+import { setAuthToken } from "../../constants/utils";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Container = styled.div`
   width: 90%;
@@ -113,10 +119,29 @@ export default function Form({
   setErrorMessage,
   setAccount,
   setPassword,
-  handleGoogleLogin,
 }) {
   const { theme } = useContext(ThemeContext);
   const location = useLocation();
+  const { setUser } = useContext(AuthContext);
+  const navigator = useNavigate();
+
+
+  const handleGoogleLogin = async () => {
+    gtag("event", "login_google", {
+      method: "Google",
+    });
+    try {
+      await signInWithPopup(auth, googleProvider);
+      Toast.fire({
+        title: "登入成功",
+      });
+      setAuthToken(auth.currentUser.uid);
+      setUser(auth.currentUser.uid);
+      navigator("/");
+    } catch (err) {
+      setErrorMessage(err.message);
+    }
+  };
 
   return (
     <Container $color={theme}>
