@@ -1,6 +1,8 @@
 # 車位即時查
 連結：[taipei-parking-2.0](https://thisisbun.github.io/taipei-parking-2.0/#/) 
-> 測試帳密 Account: `user1`, Password: `12345678`
+> 測試帳密：
+> - Account: `user@example.com`, Password: `111111`
+> - 使用 Google帳號登入
 
 ![project_main_demogif](https://user-images.githubusercontent.com/106903594/222969992-d42dece4-c41d-4c43-abb8-e94f3e0042e9.gif)
 
@@ -48,7 +50,7 @@ let me introduce to you "車位即時查"
       - 點擊則可看到費率、營業時間等詳細資訊
     - 停車場導航：一鍵開啟 Google地圖導航
   - 登入頁面：
-    可登入已經註冊的帳號，或新註冊帳號
+    可用 email登入、或用 Google帳號登入
 
 
 - 登入可使用的功能：
