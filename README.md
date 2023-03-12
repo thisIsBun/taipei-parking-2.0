@@ -87,10 +87,9 @@ let me introduce to you "車位即時查"
   - 政府資料開放平臺([網址](https://data.gov.tw/dataset/128435))：
     - TCMSV_alldesc.json
     - TCMSV_allavailable.json
-  - 使用者相關
-    - login
-    - signup
-    - currentUser
+  - Firebase Authentication
+    - Email/Password
+    - Google Account
 
 ## 專案結構
 ```
@@ -104,6 +103,7 @@ let me introduce to you "車位即時查"
     ├── assets
     │   └── logo.png
     ├── components
+    │   ├── Button
     │   ├── Card
     │   ├── Footer
     │   ├── Form
@@ -118,6 +118,7 @@ let me introduce to you "車位即時查"
     │   ├── Table
     │   └── Tooltip
     ├── constants
+    │   ├── firebase.js
     │   ├── style.js
     │   └── utils.js
     ├── contexts
@@ -149,7 +150,7 @@ let me introduce to you "車位即時查"
 1. `npm install`
 安裝此專案所需的第三方套件
 
-2. 找到 .env.local檔案，並輸入 Google Map API keys
+2. 找到 .env.local檔案，並輸入 API keys(需要 Google Map及 Firebase)
   - 路徑：src > constants > .env.local
   - 如何取得 api keys：[參考 google developers說明](https://developers.google.com/maps/documentation/embed/get-api-key?hl=zh-tw)
 
