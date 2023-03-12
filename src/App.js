@@ -38,8 +38,8 @@ function App() {
       if (user.uid === localUid) {
         setUser(user.uid);
       }
-      setIsLoading(false);
     });
+    setIsLoading(false);
   }, []);
 
   const style = {
