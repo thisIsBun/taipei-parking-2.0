@@ -1,8 +1,8 @@
 # 車位即時查
 連結：[taipei-parking-2.0](https://thisisbun.github.io/taipei-parking-2.0/#/) 
-> 測試帳密：
+> 帳密：
+> - 可使用 Google帳號登入
 > - Account: `user@example.com`, Password: `111111`
-> - 使用 Google帳號登入
 
 ![project_main_demogif](https://user-images.githubusercontent.com/106903594/222969992-d42dece4-c41d-4c43-abb8-e94f3e0042e9.gif)
 
@@ -57,6 +57,10 @@ let me introduce to you "車位即時查"
   - 儲存頁面，提供兩種檢視模式：
     - Card view：以卡片的方式，加強停車場資訊視覺化的
     - Table view：以表格方式呈現，欄位提供排序功能，方便快速檢視資料
+    
+- 登入方式：
+  - 使用 Google帳號登入
+  - 使用 email登入
 
 > __可切換 Dark/Light mode及提供 RWD響應式設計，希望提供使用者最舒服的瀏覽方式__
 
@@ -88,8 +92,8 @@ let me introduce to you "車位即時查"
     - TCMSV_alldesc.json
     - TCMSV_allavailable.json
   - Firebase Authentication
-    - Email/Password
     - Google Account
+    - Email/Password
 
 ## 專案結構
 ```
@@ -150,7 +154,7 @@ let me introduce to you "車位即時查"
 1. `npm install`
 安裝此專案所需的第三方套件
 
-2. 找到 .env.local檔案，並輸入 API keys(需要 Google Map及 Firebase)
+2. 找到 .env.local檔案，並 Google Map及 Firebase的 api keys
   - 路徑：src > constants > .env.local
   - 如何取得 google map api keys：[參考 google developers說明](https://developers.google.com/maps/documentation/embed/get-api-key?hl=zh-tw)
   - 如何取得 firebase api keys：[參考 firebase documentation說明](https://firebase.google.com/docs/projects/api-keys?hl=zh-tw)
