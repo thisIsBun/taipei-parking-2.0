@@ -59,7 +59,7 @@ let me introduce to you "車位即時查"
     - Card view：以卡片的方式，加強停車場資訊視覺化的
     - Table view：以表格方式呈現，欄位提供排序功能，方便快速檢視資料
     
-- 登入方式：
+- 提供兩種登入方式：
   - 使用 Google帳號登入
   - 使用 email登入
 
@@ -206,7 +206,7 @@ let me introduce to you "車位即時查"
 
 * * *
 ### 登入頁面 
-> 可使用 Google帳號或 email登入
+> 提供兩種登入方式，可使用 Google帳號或 email登入
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/106903594/224597166-ecc495c2-a2bc-49d2-b747-1ab9ce3dc0e0.png">
 
 * * *
