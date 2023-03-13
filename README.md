@@ -4,7 +4,7 @@
 > - 可使用 Google帳號登入
 > - Account: `user@example.com`, Password: `111111`
 
-![project_main_demogif](https://user-images.githubusercontent.com/106903594/222969992-d42dece4-c41d-4c43-abb8-e94f3e0042e9.gif)
+![project_main_demogif](https://user-images.githubusercontent.com/106903594/224596781-fbd842ac-3ec7-49f6-ba90-6ebbe3c5144d.gif)
 
 ## 目錄
 * [專案簡介](#專案簡介)
@@ -16,6 +16,7 @@
   * [地圖頁面](#地圖頁面)
   * [停車場標記](#停車場標記)
   * [停車場導航](#停車場導航)
+  * [登入頁面](#登入頁面)
   * [儲存頁面](#儲存頁面)
   * [深色模式](#深色模式)
   * [響應式設計](#響應式設計)
@@ -202,6 +203,11 @@ let me introduce to you "車位即時查"
 >  點擊路線後，可自動開啟 Google地圖導航
 
 ![Google map nevigate demo](https://user-images.githubusercontent.com/106903594/223115778-57a9613d-7c9b-4fde-bd31-62e8dd724e90.gif)
+
+* * *
+### 登入頁面 
+> 可使用 Google帳號或 email登入
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/106903594/224597166-ecc495c2-a2bc-49d2-b747-1ab9ce3dc0e0.png">
 
 * * *
 ### 儲存頁面 
