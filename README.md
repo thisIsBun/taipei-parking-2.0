@@ -67,7 +67,7 @@ let me introduce to you "車位即時查"
 
 ## 開發工具
 - 前端語言
-  - react v17.0.1
+  - react v18.2.0
   - react-router v6.8.0
   - styled-components 5.3.6
 
@@ -76,6 +76,7 @@ let me introduce to you "車位即時查"
   - use-places-autocomplete
   - @reach/combobox
   - react-table
+  - firebase
   - fortawesome
   - sweetalert2
 
