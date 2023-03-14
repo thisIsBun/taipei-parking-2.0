@@ -33,13 +33,15 @@ function App() {
 
   useEffect(() => {
     const localUid = getAuthToken();
-    setIsLoading(true);
-    onAuthStateChanged(auth, (user) => {
-      if (user.uid === localUid) {
-        setUser(user.uid);
-      }
-    });
-    setIsLoading(false);
+    if (localUid) {
+      setIsLoading(true);
+      onAuthStateChanged(auth, (user) => {
+        if (user.uid === localUid) {
+          setUser(user.uid);
+          setIsLoading(false);
+        }
+      });
+    }
   }, []);
 
   const style = {
