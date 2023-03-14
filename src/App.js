@@ -38,8 +38,8 @@ function App() {
       onAuthStateChanged(auth, (user) => {
         if (user.uid === localUid) {
           setUser(user.uid);
-          setIsLoading(false);
         }
+        setIsLoading(false);
       });
     }
   }, []);
