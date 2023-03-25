@@ -1,0 +1,24 @@
+{
+  "name": "車位即時查",
+  "short_name": "車位查",
+  "start_url": ".",
+  "id": "/taipei-parking-2.0/",
+  "icons": [
+    {
+      "src": "android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#04AA6D",
+  "background_color": "#ffffff",
+  "display": "fullscreen",
+  "description": "An app to help you find parking-lots in Taipei."
+}

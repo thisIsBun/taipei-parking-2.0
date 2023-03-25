@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-617YVYVGK4"
@@ -12,7 +11,6 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "G-617YVYVGK4");
     </script>
 
@@ -20,9 +18,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <!-- <link rel="manifest" href="/site.webmanifest" /> -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="icon" href="favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#04AA6D"/>
     <title>車位即時查</title>
     <style>
       .App {
@@ -38,5 +37,19 @@
 
   <body>
     <div id="root"></div>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register('%PUBLIC_URL%/serviceWorker.js')
+            .then((reg) => {
+              console.log("ServiceWorker Registered");
+            })
+            .catch((err) => {
+              console.log("Error in ServiceWorker", err);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
