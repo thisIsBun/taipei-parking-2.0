@@ -1,7 +1,7 @@
 {
   "name": "車位即時查",
   "short_name": "車位查",
-  "start_url": ".",
+  "start_url": "/taipei-parking-2.0/",
   "id": "/taipei-parking-2.0/",
   "icons": [
     {
