@@ -4,13 +4,12 @@
 > - 可使用 Google帳號登入
 > - Account: `user@example.com`, Password: `111111`
 
-![project_main_demogif](https://user-images.githubusercontent.com/106903594/224596781-fbd842ac-3ec7-49f6-ba90-6ebbe3c5144d.gif)
+![project_main_demogif](https://user-images.githubusercontent.com/106903594/227768832-ed598df2-3422-440d-a568-eb627bac85d5.gif)
 
 ## 目錄
 * [專案簡介](#專案簡介)
 * [功能介紹](#功能介紹)
 * [開發工具](#開發工具)
-* [專案結構](#專案結構)
 * [如何執行](#如何執行)
 * [專案 demo](#專案-demo)
   * [地圖頁面](#地圖頁面)
@@ -18,6 +17,7 @@
   * [停車場導航](#停車場導航)
   * [登入頁面](#登入頁面)
   * [儲存頁面](#儲存頁面)
+  * [PWA app](#pwa-app)
   * [深色模式](#深色模式)
   * [響應式設計](#響應式設計)
 
@@ -50,11 +50,10 @@ let me introduce to you "車位即時查"
       - hover會顯示停車場的「即時空車位數」、「是否提供充電樁」
       - 點擊則可看到費率、營業時間等詳細資訊
     - 停車場導航：一鍵開啟 Google地圖導航
-  - 登入頁面：
-    可用 email登入、或用 Google帳號登入
+  - 登入頁面
 
 
-- 登入可使用的功能：
+- 登入後可使用的功能：
   - 儲存頁面，提供兩種檢視模式：
     - Card view：以卡片的方式，加強停車場資訊視覺化的
     - Table view：以表格方式呈現，欄位提供排序功能，方便快速檢視資料
@@ -63,8 +62,12 @@ let me introduce to you "車位即時查"
   - 使用 Google帳號登入
   - 使用 email登入
 
-> __可切換 Dark/Light mode及提供 RWD響應式設計，希望提供使用者最舒服的瀏覽方式__
-
+- 提供好的用戶體驗
+  - Progressive Web App(PWA)可直接將 app安裝到電腦上，點擊 app就可以使用
+  - 可切換 Dark/Light mode
+  - 提供 RWD響應式設計
+  
+  
 ## 開發工具
 - 前端語言
   - react v18.2.0
@@ -96,59 +99,6 @@ let me introduce to you "車位即時查"
   - Firebase Authentication
     - Google Account
     - Email/Password
-
-## 專案結構
-```
-├── README.md
-├── package-lock.json
-├── package.json
-└── src
-    ├── App.js
-    ├── apis
-    │   └── WebAPI.js
-    ├── assets
-    │   └── logo.png
-    ├── components
-    │   ├── Button
-    │   ├── Card
-    │   ├── Footer
-    │   ├── Form
-    │   ├── Loader
-    │   ├── Locator
-    │   ├── Map
-    │   ├── Modal
-    │   ├── Navbar
-    │   ├── ProtectedRoute
-    │   ├── Search
-    │   ├── Switch
-    │   ├── Table
-    │   └── Tooltip
-    ├── constants
-    │   ├── firebase.js
-    │   ├── style.js
-    │   └── utils.js
-    ├── contexts
-    │   ├── AuthContext.js
-    │   ├── ParkContext.js
-    │   └── ThemeContext.js
-    ├── index.css
-    ├── index.js
-    ├── pages
-    │   ├── HomePage
-    │   │   ├── HomePage.js
-    │   │   └── index.js
-    │   ├── LoginPage
-    │   │   ├── LoginPage.js
-    │   │   └── index.js
-    │   ├── SavePage
-    │   │   ├── SavePage.js
-    │   │   └── index.js
-    │   └── SignupPage
-    │       ├── SignupPage.js
-    │       └── index.js
-    ├── reportWebVitals.js
-    └── setupTests.js
-```
 
 ## 如何執行
 確認 local已經有安裝 Node.js，專案是使用 v16.16.0開發
@@ -222,6 +172,12 @@ let me introduce to you "車位即時查"
 > 以表格的方式呈現每個停車場，欄位可使用排序功能，方便快速檢視資料
 
 ![table view demo](https://user-images.githubusercontent.com/106903594/223155334-7bc947e9-bde7-474d-aaed-d461987e01ec.gif)
+
+* * *
+### PWA app
+> 可直接將 app安裝到桌面，點擊就可以開始使用
+
+<img width="936" alt="image" src="https://user-images.githubusercontent.com/106903594/227769397-83738121-18a6-410d-82e7-35e47916b9d4.png">
 
 * * *
 ### 深色模式
