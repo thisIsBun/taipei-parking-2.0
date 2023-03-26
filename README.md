@@ -58,15 +58,16 @@ let me introduce to you "車位即時查"
     - Card view：以卡片的方式，加強停車場資訊視覺化的
     - Table view：以表格方式呈現，欄位提供排序功能，方便快速檢視資料
     
+```
 - 提供兩種登入方式：
   - 使用 Google帳號登入
   - 使用 email登入
 
 - 提供好的用戶體驗
-  - Progressive Web App(PWA)可直接將 app安裝到電腦上，點擊 app就可以使用
+  - Progressive Web App(PWA)
   - 可切換 Dark/Light mode
   - 提供 RWD響應式設計
-  
+```
   
 ## 開發工具
 - 前端語言
