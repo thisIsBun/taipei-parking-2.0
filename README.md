@@ -4,7 +4,7 @@
 > - 可使用 Google帳號登入
 > - Account: `user@example.com`, Password: `111111`
 
-![project_main_demogif](https://user-images.githubusercontent.com/106903594/227768832-ed598df2-3422-440d-a568-eb627bac85d5.gif)
+![project_main_demogif](https://user-images.githubusercontent.com/106903594/227787275-49f4840d-7c93-43d0-bf2b-9e23de6da0e2.gif)
 
 ## 目錄
 * [專案簡介](#專案簡介)
