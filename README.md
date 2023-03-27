@@ -63,7 +63,7 @@ let me introduce to you "車位即時查"
   - 使用 Google帳號登入
   - 使用 email登入
 
-- 提供好的用戶體驗
+- 提供好的用戶體驗：
   - Progressive Web App(PWA)
   - 可切換 Dark/Light mode
   - 提供 RWD響應式設計
