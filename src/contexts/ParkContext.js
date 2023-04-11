@@ -15,11 +15,12 @@ export const ParkProvider = ({ children }) => {
     const rawData = parkRes.data.park;
     const rawAvlData = parkAvlRes.data.park;
     const rawAvlTime = parkAvlRes.data.UPDATETIME;
-    const newData = rawData
-      .map((item) => {
-        const avlItem = rawAvlData.find((avl) => avl.id === item.id);
 
-        if (!avlItem) return null;
+    const newData = rawAvlData
+      .map((avlItem) => {
+        const item = rawData.find((ele) => ele.id === avlItem.id);
+
+        if (!item) return null;
         const {
           name,
           totalcar,
@@ -31,13 +32,14 @@ export const ParkProvider = ({ children }) => {
           area,
           address,
         } = item;
+
         const { lat, lng } = twd97_to_latlng(tw97x, tw97y);
         const opening =
           serviceTime === "00:00:00~23:59:59" ? "24小時" : serviceTime;
+
         const { id, availablecar, ChargeStation } = avlItem;
         const hasChargingStation = ChargeStation === undefined ? "無" : "有";
         if (availablecar <= 0) return null;
-
         return {
           id,
           name,
@@ -54,10 +56,11 @@ export const ParkProvider = ({ children }) => {
         };
       })
       .filter((item) => item !== null);
+
     setSortData(newData);
     setUpdateTime(rawAvlTime);
     setIsLoading(false);
-  };
+  }
 
   useEffect(() => {
     fetchData();
