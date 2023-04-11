@@ -125,7 +125,6 @@ export default function Form({
   const { setUser } = useContext(AuthContext);
   const navigator = useNavigate();
 
-
   const handleGoogleLogin = async () => {
     gtag("event", "login_google", {
       method: "Google",
@@ -155,11 +154,7 @@ export default function Form({
       </HeaderContainer>
       <FormContainer
         onSubmit={(e) => {
-          if (location.pathname === "/login") {
-            handleLogin(e);
-          } else if (location.pathname === "/signup") {
-            handleSignup(e);
-          }
+          location.pathname === "/login" ? handleLogin(e) : handleSignup(e);
         }}
       >
         <FormWrapper>

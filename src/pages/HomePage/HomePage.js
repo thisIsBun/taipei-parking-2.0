@@ -10,15 +10,14 @@ export default function HomePage() {
     googleMapsApiKey: API_KEY_MAP,
     libraries: libraries,
   });
-  if (!isLoaded) return (
+  return !isLoaded ? (
     <Loader
       borderColor="#04AA6D"
       borderTopColor="rgba(0, 0, 0, 0)"
       width="100%"
       height="200px"
     />
-  );
-  return (
+  ) : (
     <Map />
   );
 }

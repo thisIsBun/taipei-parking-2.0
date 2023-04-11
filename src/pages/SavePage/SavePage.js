@@ -203,8 +203,9 @@ export default function SavePage() {
     []
   );
 
-  if (!data.length) return <Empty>目前沒有儲存資料</Empty>;
-  return (
+  return !data.length ? (
+    <Empty>目前沒有儲存資料</Empty>
+  ) : (
     <Container>
       <Header>
         <h1>我的儲存</h1>

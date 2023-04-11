@@ -109,7 +109,9 @@ const iconSize = {
 
 export default function Modal({ clickMarker }) {
   const { name, payex, area, address, opening, lat, lng, id } = clickMarker;
-  const [saveList, setSaveList] = useState(() => getSaveListLocalStorage() || []);
+  const [saveList, setSaveList] = useState(
+    () => getSaveListLocalStorage() || []
+  );
 
   const [isSaved, setIsSaved] = useState(() => {
     return saveList.some((list) => list.id === id);
