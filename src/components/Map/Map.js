@@ -14,6 +14,7 @@ import Tooltip from "../Tooltip/Tooltip";
 import Modal from "../Modal";
 import Locator from "../Locator";
 import { gtag } from "../../constants/utils";
+import beachflag from "../../assets/beachflag.png"
 
 export default function Map() {
   const center = useMemo(() => ({ lat: 25.0336752, lng: 121.5648831 }), []);
@@ -87,7 +88,7 @@ export default function Map() {
                         position={{ lat: park.lat, lng: park.lng }}
                         key={park.id}
                         clusterer={clusterer}
-                        icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+                        icon={beachflag}
                         onMouseOut={() => setHoverMarker(null)}
                         onMouseOver={() => setHoverMarker(park)}
                         onClick={() => {
