@@ -19,7 +19,7 @@
   ],
   "theme_color": "#1d2a35",
   "background_color": "#1d2a35",
-  "display": "fullscreen",
+  "display": "minimal-ui",
   "description": "An app to help you find parking-lots in Taipei.",
   "google_analytics": {
     "measurement_id": "G-617YVYVGK4"
